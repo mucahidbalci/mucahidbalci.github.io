@@ -5,6 +5,7 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=5" name="viewport"/>
     <title>Mücahid Balcı — Genç Girişimci & Siber Güvenlik Araştırmacısı</title>
     
+    <link href="assets/icons/icon.svg" rel="icon" type="image/svg+xml"/>
     <link href="https://fonts.googleapis.com" rel="preconnect"/>
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
@@ -28,7 +29,6 @@
             overflow-x: hidden;
         }
 
-        /* TERMINAL LOADING SCREEN */
         .terminal-loader {
             position: fixed;
             inset: 0;
@@ -95,7 +95,6 @@
         .terminal-skip { color: var(--accent-gold); cursor: pointer; transition: opacity 0.3s; }
         .terminal-skip:hover { opacity: 0.7; }
 
-        /* HERO SECTION */
         .hero-section { position: relative; height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; }
         .hero-bg { position: absolute; inset: 0; background: radial-gradient(circle at 50% 50%, #0a1f15 0%, #050706 70%); z-index: 1; }
         .hero-fog {
@@ -222,7 +221,6 @@
 </head>
 <body>
 
-    <!-- TERMINAL LOADING SCREEN -->
     <div class="terminal-loader" id="terminalLoader">
         <div class="terminal-box">
             <div class="terminal-prompt">mucahid@sec:~$</div>
@@ -255,14 +253,14 @@
                 
                 <div class="lang-dropdown">
                     <button class="lang-btn" id="langBtn" onclick="toggleLangMenu()">
-                        <span id="currentFlag">🇹</span>
+                        <span id="currentFlag">🇹🇷</span>
                         <span id="currentLangText">Türkçe</span>
                         <span class="arrow">▾</span>
                     </button>
                     <div class="lang-menu" id="langMenu">
-                        <div class="lang-option active" onclick="setLanguage('tr')" data-lang="tr"><span>🇹🇷</span><span>Türkçe</span><span class="check">✓</span></div>
-                        <div class="lang-option" onclick="setLanguage('en')" data-lang="en"><span>🇧</span><span>English</span><span class="check">✓</span></div>
-                        <div class="lang-option" onclick="setLanguage('es')" data-lang="es"><span>🇸</span><span>Español</span><span class="check">✓</span></div>
+                        <div class="lang-option active" onclick="setLanguage('tr')" data-lang="tr"><span>🇹</span><span>Türkçe</span><span class="check">✓</span></div>
+                        <div class="lang-option" onclick="setLanguage('en')" data-lang="en"><span>🇬🇧</span><span>English</span><span class="check">✓</span></div>
+                        <div class="lang-option" onclick="setLanguage('es')" data-lang="es"><span>🇪🇸</span><span>Español</span><span class="check">✓</span></div>
                         <div class="lang-option" onclick="setLanguage('ar')" data-lang="ar"><span>🇸🇦</span><span>العربية</span><span class="check">✓</span></div>
                     </div>
                 </div>
@@ -337,7 +335,7 @@
                         <span style="font-size: 0.75rem; padding: 4px 8px; background: rgba(255,255,255,0.05); border-radius: 6px;">Nmap</span>
                         <span style="font-size: 0.75rem; padding: 4px 8px; background: rgba(255,255,255,0.05); border-radius: 6px;">Security</span>
                     </div>
-                    <a href="https://github.com/mucahh1d/AutoReconX" target="_blank" class="btn" data-tr="GitHub'da İncele" data-en="View on GitHub" data-es="Ver en GitHub" data-ar="عرض على GitHub">GitHub'da İncele →</a>
+                    <a href="https://github.com/mucahidbalci/AutoReconX" target="_blank" class="btn" data-tr="GitHub'da İncele" data-en="View on GitHub" data-es="Ver en GitHub" data-ar="عرض على GitHub">GitHub'da İncele →</a>
                 </div>
                 <div class="card reveal reveal-delay-1">
                     <span class="tag" data-tr="OSINT & Forensics" data-en="OSINT & Forensics" data-es="OSINT y Forense" data-ar="OSINT والطب الشرعي">OSINT & Forensics</span>
@@ -348,7 +346,7 @@
                         <span style="font-size: 0.75rem; padding: 4px 8px; background: rgba(255,255,255,0.05); border-radius: 6px;">Playwright</span>
                         <span style="font-size: 0.75rem; padding: 4px 8px; background: rgba(255,255,255,0.05); border-radius: 6px;">OSINT</span>
                     </div>
-                    <a href="https://github.com/mucahh1d/PyWebClone" target="_blank" class="btn" data-tr="GitHub'da İncele" data-en="View on GitHub" data-es="Ver en GitHub" data-ar="عرض على GitHub">GitHub'da İncele →</a>
+                    <a href="https://github.com/mucahidbalci/PyWebClone" target="_blank" class="btn" data-tr="GitHub'da İncele" data-en="View on GitHub" data-es="Ver en GitHub" data-ar="عرض على GitHub">GitHub'da İncele →</a>
                 </div>
                 <div class="card reveal reveal-delay-2">
                     <span class="tag" data-tr="Network Security" data-en="Network Security" data-es="Seguridad de Red" data-ar="أمن الشبكة">Network Security</span>
@@ -359,7 +357,7 @@
                         <span style="font-size: 0.75rem; padding: 4px 8px; background: rgba(255,255,255,0.05); border-radius: 6px;">CustomTkinter</span>
                         <span style="font-size: 0.75rem; padding: 4px 8px; background: rgba(255,255,255,0.05); border-radius: 6px;">Network</span>
                     </div>
-                    <a href="https://github.com/mucahh1d/PyScanPro" target="_blank" class="btn" data-tr="GitHub'da İncele" data-en="View on GitHub" data-es="Ver en GitHub" data-ar="عرض على GitHub">GitHub'da İncele →</a>
+                    <a href="https://github.com/mucahidbalci/PyScanPro" target="_blank" class="btn" data-tr="GitHub'da İncele" data-en="View on GitHub" data-es="Ver en GitHub" data-ar="عرض على GitHub">GitHub'da İncele →</a>
                 </div>
             </div>
         </div>
@@ -439,9 +437,9 @@
                             <div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></div>
                             <div class="contact-details"><div class="contact-label" data-tr="Email" data-en="Email" data-es="Correo" data-ar="البريد">Email</div><div class="contact-link">balcimucahid4@gmail.com</div></div>
                         </div>
-                        <div class="contact-item" onclick="window.open('https://github.com/mucahh1d', '_blank')">
-                            <div class="contact-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.24-.589-.54-1.49-.119-2.953 0 0 .912-.293 2.984 1.109.866-.24 1.793-.362 2.719-.366.927.004 1.854.126 2.72.366 2.072-1.402 2.983-1.109 2.983-1.109.421 1.463.121 2.364-.118 2.953.768.84 1.235 1.91 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></div>
-                            <div class="contact-details"><div class="contact-label">GitHub</div><div class="contact-link">github.com/mucahh1d</div></div>
+                        <div class="contact-item" onclick="window.open('https://github.com/mucahidbalci', '_blank')">
+                            <div class="contact-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.25 3.34.95.1-.74.4-1.25.72-1.53-2.55-.29-5.23-1.28-5.23-5.68 0-1.25.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.15 1.18a10.9 10.9 0 0 1 5.74 0c2.18-1.49 3.14-1.18 3.14-1.18.63 1.59.24 2.76.12 3.05.74.81 1.18 1.84 1.18 3.09 0 4.41-2.69 5.38-5.25 5.66.41.36.77 1.05.77 2.12v3.15c0 .3.2.67.8.55A11.52 11.52 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"></path></svg></div>
+                            <div class="contact-details"><div class="contact-label">GitHub</div><div class="contact-link">github.com/mucahidbalci</div></div>
                         </div>
                         <div class="contact-item" onclick="window.open('https://instagram.com/mucahh2d', '_blank')">
                             <div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></div>
@@ -481,15 +479,13 @@
     </footer>
 
     <script>
-        // SAYFA YÜKLENİR YÜKLENMEZ KAYDIRMAYI KİLİTLE
         document.body.style.overflow = 'hidden';
-
         let terminalSkipped = false;
         
         function skipTerminal() {
             terminalSkipped = true;
             document.getElementById('terminalLoader').classList.add('hidden');
-            document.body.style.overflow = 'auto'; // KAYDIRMAYI GERİ AÇ
+            document.body.style.overflow = 'auto';
         }
         
         function runTerminalAnimation() {
@@ -522,7 +518,7 @@
                         clearInterval(interval);
                         setTimeout(() => {
                             document.getElementById('terminalLoader').classList.add('hidden');
-                            document.body.style.overflow = 'auto'; // KAYDIRMAYI GERİ AÇ
+                            document.body.style.overflow = 'auto';
                         }, 400);
                     }
                     progressBar.style.width = percent + '%';
@@ -533,7 +529,6 @@
         
         window.addEventListener('load', () => { runTerminalAnimation(); });
 
-        // GERÇEKÇİ YILDIRIM
         function generateLightningPath() {
             const path = document.getElementById('lightningPath');
             const width = 1920, height = 1080;
@@ -585,7 +580,6 @@
         });
         setTimeout(() => { triggerLightning(); scheduleLightning(); }, 5000);
 
-        // HARF HARF ANİMASYON
         const titleText = "MÜCAHİD BALCI";
         const titleElement = document.getElementById('heroTitle');
         let html = '';
@@ -598,17 +592,15 @@
         setTimeout(() => { document.querySelector('.hero-subtitle').classList.add('revealed'); }, 1500);
         setTimeout(() => { document.querySelector('.hero-desc').classList.add('revealed'); }, 1800);
 
-        // SCROLL REVEAL
         const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); }); }, { threshold: 0.1, rootMargin: '0px 0px -100px 0px' });
         document.addEventListener('DOMContentLoaded', () => { document.querySelectorAll('.reveal, .section-label, .section-title, .card').forEach(el => observer.observe(el)); });
         window.addEventListener('scroll', () => { const navbar = document.getElementById('navbar'); if (window.scrollY > 50) navbar.classList.add('scrolled'); else navbar.classList.remove('scrolled'); });
 
-        // DİL SİSTEMİ
         let currentLang = 'tr';
         const langData = {
-            tr: { flag: '🇹🇷', name: 'Türkçe', placeholders: { name: 'Adınız Soyadınız', email: 'ornek@email.com', subject: 'Proje hakkında görüşmek istiyorum', message: 'Merhaba Mücahid, bir proje hakkında konuşmak istiyorum...' } },
+            tr: { flag: '🇹', name: 'Türkçe', placeholders: { name: 'Adınız Soyadınız', email: 'ornek@email.com', subject: 'Proje hakkında görüşmek istiyorum', message: 'Merhaba Mücahid, bir proje hakkında konuşmak istiyorum...' } },
             en: { flag: '🇬🇧', name: 'English', placeholders: { name: 'Full Name', email: 'example@email.com', subject: 'I want to discuss a project', message: 'Hi Mücahid, I would like to talk about a project...' } },
-            es: { flag: '🇸', name: 'Español', placeholders: { name: 'Nombre Completo', email: 'ejemplo@email.com', subject: 'Quiero discutir un proyecto', message: 'Hola Mücahid, me gustaría hablar sobre un proyecto...' } },
+            es: { flag: '🇪🇸', name: 'Español', placeholders: { name: 'Nombre Completo', email: 'ejemplo@email.com', subject: 'Quiero discutir un proyecto', message: 'Hola Mücahid, me gustaría hablar sobre un proyecto...' } },
             ar: { flag: '🇸🇦', name: 'العربية', placeholders: { name: 'الاسم الكامل', email: 'example@email.com', subject: 'أريد مناقشة مشروع', message: 'مرحبا مجاهد، أريد التحدث عن مشروع...' } }
         };
         function toggleLangMenu() { document.getElementById('langMenu').classList.toggle('open'); document.getElementById('langBtn').classList.toggle('open'); }
