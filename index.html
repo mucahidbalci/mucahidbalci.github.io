@@ -169,6 +169,9 @@
         .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
         .logo { font-weight: 800; font-size: 1.2rem; letter-spacing: -0.02em; opacity: 0; transform: translateX(-20px); animation: fadeInLeft 0.8s ease forwards; }
         @keyframes fadeInLeft { to { opacity: 1; transform: translateX(0); } }
+        
+        .mobile-menu-btn { display: none; background: none; border: none; color: var(--text-white); cursor: pointer; padding: 8px; }
+        
         .nav-links { display: flex; gap: 2rem; align-items: center; flex-wrap: wrap; }
         .nav-links a { color: var(--text-neutral); text-decoration: none; font-size: 0.9rem; transition: all 0.3s; position: relative; }
         .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: var(--accent); transition: width 0.3s; }
@@ -187,7 +190,6 @@
         .lang-option.active { background: rgba(16, 185, 129, 0.1); color: var(--accent); }
         .lang-option .check { margin-left: auto; opacity: 0; font-size: 1.1rem; }
         .lang-option.active .check { opacity: 1; }
-        @media (max-width: 768px) { .nav-links { display: none; } }
 
         .contact-section { background: linear-gradient(to bottom, transparent, rgba(16, 185, 129, 0.03)); }
         .contact-grid { display: grid; grid-template-columns: 1fr; gap: 4rem; margin-top: 4rem; }
@@ -217,6 +219,59 @@
         .form-note { font-size: 0.8rem; color: var(--text-neutral); margin-top: 0.5rem; }
 
         footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 60px 20px; text-align: center; color: var(--text-neutral); font-size: 0.9rem; }
+
+        /* Mobil Uyumluluk (Responsive) Düzenlemeleri */
+        @media (max-width: 768px) {
+            section { padding: 60px 16px; }
+            footer { padding: 40px 16px; }
+            .hero-title { font-size: clamp(2.5rem, 12vw, 4rem); }
+            .hero-subtitle { font-size: 1rem; margin-top: 1.5rem; }
+            .hero-desc { font-size: 0.95rem; }
+            .card { padding: 1.5rem; }
+            .section-title { font-size: clamp(1.75rem, 6vw, 2.5rem); }
+            
+            .mobile-menu-btn { display: block; }
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(5, 7, 6, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 20px;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+                gap: 1.5rem;
+                align-items: flex-start;
+                max-height: 80vh;
+                overflow-y: auto;
+            }
+            .nav-links.open { display: flex; }
+            .lang-dropdown { width: 100%; margin-top: 10px; }
+            .lang-btn { width: 100%; justify-content: space-between; }
+            .lang-menu { 
+                position: static; 
+                opacity: 1; 
+                visibility: visible; 
+                transform: none; 
+                display: none; 
+                background: rgba(255,255,255,0.03); 
+                border: 1px solid rgba(255,255,255,0.1); 
+                margin-top: 8px; 
+                min-width: 100%;
+            }
+            .lang-menu.open { display: block; }
+            
+            .form-group input, .form-group textarea { font-size: 16px; } /* iOS otomatik zoom engelleme */
+        }
+
+        @media (max-width: 480px) {
+            .terminal-box { width: 95%; }
+            .terminal-prompt, .terminal-command, .terminal-line { font-size: 0.75rem; }
+            .terminal-progress-text { font-size: 0.7rem; }
+            .contact-grid { gap: 2rem; }
+        }
     </style>
 </head>
 <body>
@@ -243,7 +298,10 @@
     <nav id="navbar">
         <div class="nav-inner">
             <div class="logo">MÜCAHİD BALCI</div>
-            <div class="nav-links">
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menüyü Aç/Kapat">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            </button>
+            <div class="nav-links" id="navLinks">
                 <a href="#about" data-tr="Hakkımda" data-en="About" data-es="Sobre mí" data-ar="عني">Hakkımda</a>
                 <a href="#music" data-tr="Müzik" data-en="Music" data-es="Música" data-ar="الموسيقى">Müzik</a>
                 <a href="#github-projects" data-tr="Projeler" data-en="Projects" data-es="Proyectos" data-ar="المشاريع">Projeler</a>
@@ -258,7 +316,7 @@
                         <span class="arrow">▾</span>
                     </button>
                     <div class="lang-menu" id="langMenu">
-                        <div class="lang-option active" onclick="setLanguage('tr')" data-lang="tr"><span>🇹</span><span>Türkçe</span><span class="check">✓</span></div>
+                        <div class="lang-option active" onclick="setLanguage('tr')" data-lang="tr"><span>🇹🇷</span><span>Türkçe</span><span class="check">✓</span></div>
                         <div class="lang-option" onclick="setLanguage('en')" data-lang="en"><span>🇬🇧</span><span>English</span><span class="check">✓</span></div>
                         <div class="lang-option" onclick="setLanguage('es')" data-lang="es"><span>🇪🇸</span><span>Español</span><span class="check">✓</span></div>
                         <div class="lang-option" onclick="setLanguage('ar')" data-lang="ar"><span>🇸🇦</span><span>العربية</span><span class="check">✓</span></div>
@@ -329,7 +387,7 @@
                 <div class="card reveal">
                     <span class="tag" data-tr="Siber Güvenlik" data-en="Cybersecurity" data-es="Ciberseguridad" data-ar="الأمن السيبراني">Siber Güvenlik</span>
                     <h3>AutoReconX</h3>
-                    <p data-tr="🔥 Ultra Pro Türkçe siber güvenlik platformu. XSS, SQLi, LFI, CVE, SSL, bulut ve DNS zafiyet taraması. TR-CERT ransomware veritabanı entegrasyonu ve profesyonel HTML/JSON raporlama." data-en="Ultra Pro Turkish cybersecurity platform. XSS, SQLi, LFI, CVE, SSL, cloud and DNS vulnerability scanning. TR-CERT ransomware database integration and professional HTML/JSON reporting." data-es="Plataforma de ciberseguridad Ultra Pro en turco. Escaneo de vulnerabilidades XSS, SQLi, LFI, CVE, SSL, nube y DNS." data-ar="منصة أمن سيبراني Ultra Pro بالتركية. فحص ثغرات XSS و SQLi و LFI و CVE و SSL والسحابة و DNS.">🔥 Ultra Pro Türkçe siber güvenlik platformu. XSS, SQLi, LFI, CVE, SSL, bulut ve DNS zafiyet taraması. TR-CERT ransomware veritabanı entegrasyonu ve profesyonel HTML/JSON raporlama.</p>
+                    <p data-tr="🔥 Ultra Pro Türkçe siber güvenlik platformu. XSS, SQLi, LFI, CVE, SSL, bulut ve DNS zafiyet taraması. TR-CERT ransomware veritabanı entegrasyonu ve profesyonel HTML/JSON raporlama." data-en="Ultra Pro Turkish cybersecurity platform. XSS, SQLi, LFI, CVE, SSL, cloud and DNS vulnerability scanning. TR-CERT ransomware database integration and professional HTML/JSON reporting." data-es="Plataforma de ciberseguridad Ultra Pro en turco. Escaneo de vulnerabilidades XSS, SQLi, LFI, CVE, SSL, nube y DNS." data-ar="منصة أمن سيبراني Ultra Pro بالتركية. فحص ثغرات XSS و SQLi و LFI و CVE و SSL والسحابة وDNS.">🔥 Ultra Pro Türkçe siber güvenlik platformu. XSS, SQLi, LFI, CVE, SSL, bulut ve DNS zafiyet taraması. TR-CERT ransomware veritabanı entegrasyonu ve profesyonel HTML/JSON raporlama.</p>
                     <div style="margin-top: 1rem; display: flex; gap: 0.5rem; flex-wrap: wrap;">
                         <span style="font-size: 0.75rem; padding: 4px 8px; background: rgba(16, 185, 129, 0.1); border-radius: 6px; color: var(--accent);">Python</span>
                         <span style="font-size: 0.75rem; padding: 4px 8px; background: rgba(255,255,255,0.05); border-radius: 6px;">Nmap</span>
@@ -598,7 +656,7 @@
 
         let currentLang = 'tr';
         const langData = {
-            tr: { flag: '🇹', name: 'Türkçe', placeholders: { name: 'Adınız Soyadınız', email: 'ornek@email.com', subject: 'Proje hakkında görüşmek istiyorum', message: 'Merhaba Mücahid, bir proje hakkında konuşmak istiyorum...' } },
+            tr: { flag: '🇹🇷', name: 'Türkçe', placeholders: { name: 'Adınız Soyadınız', email: 'ornek@email.com', subject: 'Proje hakkında görüşmek istiyorum', message: 'Merhaba Mücahid, bir proje hakkında konuşmak istiyorum...' } },
             en: { flag: '🇬🇧', name: 'English', placeholders: { name: 'Full Name', email: 'example@email.com', subject: 'I want to discuss a project', message: 'Hi Mücahid, I would like to talk about a project...' } },
             es: { flag: '🇪🇸', name: 'Español', placeholders: { name: 'Nombre Completo', email: 'ejemplo@email.com', subject: 'Quiero discutir un proyecto', message: 'Hola Mücahid, me gustaría hablar sobre un proyecto...' } },
             ar: { flag: '🇸🇦', name: 'العربية', placeholders: { name: 'الاسم الكامل', email: 'example@email.com', subject: 'أريد مناقشة مشروع', message: 'مرحبا مجاهد، أريد التحدث عن مشروع...' } }
@@ -618,6 +676,18 @@
         }
         document.addEventListener('click', (e) => { const dropdown = document.querySelector('.lang-dropdown'); if (!dropdown.contains(e.target)) { document.getElementById('langMenu').classList.remove('open'); document.getElementById('langBtn').classList.remove('open'); } });
         document.querySelectorAll('a[href^="#"]').forEach(anchor => { anchor.addEventListener('click', function(e) { e.preventDefault(); const target = document.querySelector(this.getAttribute('href')); if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }); });
+        
+        // Mobil Menü İşlevleri
+        function toggleMobileMenu() {
+            document.getElementById('navLinks').classList.toggle('open');
+        }
+        
+        // Mobilde bir linke tıklandığında menüyü otomatik kapat
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navLinks').classList.remove('open');
+            });
+        });
     </script>
 </body>
 </html>
