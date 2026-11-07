@@ -21,12 +21,61 @@
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
+        /* Custom Cursor */
+        .cursor {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--accent);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: all 0.1s ease;
+            mix-blend-mode: difference;
+        }
+        .cursor.hovered {
+            width: 50px;
+            height: 50px;
+            background: rgba(16, 185, 129, 0.1);
+            border-color: var(--accent-gold);
+        }
+        .cursor-follower {
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: all 0.3s ease;
+        }
+        
+        /* Noise Texture */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 9998;
+            opacity: 0.4;
+        }
+        
         body {
             background-color: var(--bg-dark);
             color: var(--text-white);
             font-family: 'Inter', sans-serif;
             line-height: 1.6;
             overflow-x: hidden;
+            cursor: none;
+        }
+        
+        body.cursor-default {
+            cursor: auto;
+        }
+        body.cursor-default .cursor,
+        body.cursor-default .cursor-follower {
+            display: none;
         }
 
         .terminal-loader {
@@ -107,16 +156,16 @@
 
         .lightning-svg { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 3; pointer-events: none; }
         .lightning-path {
-            fill: none; stroke: #ffffff; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round;
+            fill: none; stroke: #ffffff; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
             filter: drop-shadow(0 0 10px rgba(255,255,255,0.9)) drop-shadow(0 0 20px rgba(16, 185, 129, 0.8)) drop-shadow(0 0 30px rgba(16, 185, 129, 0.6));
-            opacity: 0;
+            opacity: 0.3;
         }
         .lightning-path.active { animation: lightningStrike 0.6s ease-out forwards; }
-        @keyframes lightningStrike { 0% { opacity: 0; } 10%, 50% { opacity: 1; } 70% { opacity: 0.8; } 100% { opacity: 0; } }
+        @keyframes lightningStrike { 0% { opacity: 0; } 10%, 50% { opacity: 0.3; } 70% { opacity: 0.2; } 100% { opacity: 0; } }
 
-        .lightning-flash { position: absolute; inset: 0; background: rgba(255, 255, 255, 0.15); opacity: 0; z-index: 4; pointer-events: none; mix-blend-mode: overlay; }
+        .lightning-flash { position: absolute; inset: 0; background: rgba(255, 255, 255, 0.05); opacity: 0; z-index: 4; pointer-events: none; mix-blend-mode: overlay; }
         .lightning-flash.active { animation: flashEffect 0.6s ease-out; }
-        @keyframes flashEffect { 0%, 100% { opacity: 0; } 10%, 30%, 50% { opacity: 0.8; } 20%, 40% { opacity: 0; } }
+        @keyframes flashEffect { 0%, 100% { opacity: 0; } 10%, 30%, 50% { opacity: 0.3; } 20%, 40% { opacity: 0; } }
 
         .hero-content { position: relative; z-index: 10; text-align: center; padding: 0 20px; }
         .hero-title { font-size: clamp(3rem, 10vw, 8rem); font-weight: 900; letter-spacing: -0.04em; line-height: 0.9; display: inline-block; }
@@ -218,6 +267,19 @@
         .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(16, 185, 129, 0.4); }
         .form-note { font-size: 0.8rem; color: var(--text-neutral); margin-top: 0.5rem; }
 
+        /* Spotify Embed Container */
+        .spotify-container {
+            margin-top: 2rem;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.08);
+            background: rgba(0,0,0,0.3);
+        }
+        .spotify-container iframe {
+            width: 100%;
+            border-radius: 16px;
+        }
+
         footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 60px 20px; text-align: center; color: var(--text-neutral); font-size: 0.9rem; }
 
         @media (max-width: 768px) {
@@ -263,6 +325,10 @@
             .lang-menu.open { display: block; }
             
             .form-group input, .form-group textarea { font-size: 16px; }
+            
+            /* Mobilde custom cursor'ı kapat */
+            .cursor, .cursor-follower { display: none; }
+            body { cursor: auto; }
         }
 
         @media (max-width: 480px) {
@@ -274,6 +340,10 @@
     </style>
 </head>
 <body>
+
+    <!-- Custom Cursor -->
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-follower" id="cursor-follower"></div>
 
     <div class="terminal-loader" id="terminalLoader">
         <div class="terminal-box">
@@ -310,7 +380,7 @@
                 
                 <div class="lang-dropdown">
                     <button class="lang-btn" id="langBtn" onclick="toggleLangMenu()">
-                        <span id="currentFlag">🇹</span>
+                        <span id="currentFlag">🇷</span>
                         <span id="currentLangText">Türkçe</span>
                         <span class="arrow">▾</span>
                     </button>
@@ -367,6 +437,11 @@
                     <span class="tag" data-tr="Dijital Dağıtım & Prodüksiyon" data-en="Digital Distribution & Production" data-es="Distribución Digital y Producción" data-ar="التوزيع الرقمي والإنتاج">Dijital Dağıtım & Prodüksiyon</span>
                     <h3 data-tr="Orijinal Prodüksiyon & Remix" data-en="Original Production & Remix" data-es="Producción Original y Remix" data-ar="الإنتاج الأصلي والريمكس">Orijinal Prodüksiyon & Remix</h3>
                     <p data-tr="Dijital platformlarda geniş kitlelere ulaşan orijinal prodüksiyon ve remix çalışmaları. Müzikal üretimi, veri odaklı sosyal medya stratejileriyle birleştirerek hedef kitleye maksimum erişim ve etkileşim sağlıyorum." data-en="Original productions and remix works reaching broad audiences on digital platforms. I maximize reach and engagement by combining musical output with data-driven social media strategies." data-es="Producciones originales y trabajos de remix que llegan a grandes audiencias en plataformas digitales. Maximizo el alcance y la interacción combinando la producción musical con estrategias de redes sociales basadas en datos." data-ar="إنتاجات أصلية وأعمال ريمكس تصل إلى جماهير واسعة على المنصات الرقمية. أحقق أقصى وصول وتفاعل من خلال دمج الإنتاج الموسيقي مع استراتيجيات وسائل التواصل الاجتماعي القائمة على البيانات.">Dijital platformlarda geniş kitlelere ulaşan orijinal prodüksiyon ve remix çalışmaları. Müzikal üretimi, veri odaklı sosyal medya stratejileriyle birleştirerek hedef kitleye maksimum erişim ve etkileşim sağlıyorum.</p>
+                    
+                    <!-- Spotify Embed -->
+                    <div class="spotify-container">
+                        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/album/1UEl71OrOInwMv02uQ4Z6a?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                    </div>
                 </div>
                 <div class="card reveal reveal-delay-1">
                     <span class="tag" data-tr="Label Yönetimi" data-en="Label Management" data-es="Gestión de Sello" data-ar="إدارة التسمية">Label Yönetimi</span>
@@ -539,13 +614,53 @@
     </footer>
 
     <script>
-        document.body.style.overflow = 'hidden';
-        let terminalSkipped = false;
+        // Custom Cursor
+        const cursor = document.getElementById('cursor');
+        const cursorFollower = document.getElementById('cursor-follower');
+        let mouseX = 0, mouseY = 0;
+        let cursorX = 0, cursorY = 0;
+        let followerX = 0, followerY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        function animateCursor() {
+            // Ana cursor daha hızlı hareket eder
+            cursorX += (mouseX - cursorX) * 0.2;
+            cursorY += (mouseY - cursorY) * 0.2;
+            
+            // Follower daha yavaş ve yumuşak hareket eder
+            followerX += (mouseX - followerX) * 0.1;
+            followerY += (mouseY - followerY) * 0.1;
+            
+            cursor.style.left = cursorX - 10 + 'px';
+            cursor.style.top = cursorY - 10 + 'px';
+            cursorFollower.style.left = followerX - 4 + 'px';
+            cursorFollower.style.top = followerY - 4 + 'px';
+            
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        // Hover efektleri için
+        const interactiveElements = document.querySelectorAll('a, button, .card, .contact-item, .btn');
+        interactiveElements.forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
+        });
+
+        // Akıllı Terminal - localStorage kontrolü
+        const hasVisited = localStorage.getItem('portfolioVisited');
         
         function skipTerminal() {
-            terminalSkipped = true;
+            localStorage.setItem('portfolioVisited', 'true');
             document.getElementById('terminalLoader').classList.add('hidden');
-            document.body.style.overflow = 'auto';
+            document.body.classList.remove('cursor-default');
+            setTimeout(() => {
+                document.body.style.overflow = 'auto';
+            }, 800);
         }
         
         function runTerminalAnimation() {
@@ -577,8 +692,7 @@
                         percent = 100;
                         clearInterval(interval);
                         setTimeout(() => {
-                            document.getElementById('terminalLoader').classList.add('hidden');
-                            document.body.style.overflow = 'auto';
+                            skipTerminal();
                         }, 400);
                     }
                     progressBar.style.width = percent + '%';
@@ -587,7 +701,20 @@
             }, delay);
         }
         
-        window.addEventListener('load', () => { runTerminalAnimation(); });
+        let terminalSkipped = false;
+        
+        // İlk ziyaret mi kontrol et
+        if (hasVisited) {
+            // Daha önce ziyaret etmiş, terminali atla
+            document.getElementById('terminalLoader').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+            document.body.classList.remove('cursor-default');
+        } else {
+            // İlk ziyaret, terminali göster
+            document.body.classList.add('cursor-default');
+            document.body.style.overflow = 'hidden';
+            window.addEventListener('load', () => { runTerminalAnimation(); });
+        }
 
         function generateLightningPath() {
             const path = document.getElementById('lightningPath');
@@ -658,7 +785,7 @@
 
         let currentLang = 'tr';
         const langData = {
-            tr: { flag: '🇹', name: 'Türkçe', placeholders: { name: 'Adınız Soyadınız', email: 'ornek@email.com', subject: 'Proje hakkında görüşmek istiyorum', message: 'Merhaba Mücahid, bir proje hakkında konuşmak istiyorum...' } },
+            tr: { flag: '🇹🇷', name: 'Türkçe', placeholders: { name: 'Adınız Soyadınız', email: 'ornek@email.com', subject: 'Proje hakkında görüşmek istiyorum', message: 'Merhaba Mücahid, bir proje hakkında konuşmak istiyorum...' } },
             en: { flag: '🇬🇧', name: 'English', placeholders: { name: 'Full Name', email: 'example@email.com', subject: 'I want to discuss a project', message: 'Hi Mücahid, I would like to talk about a project...' } },
             es: { flag: '🇪🇸', name: 'Español', placeholders: { name: 'Nombre Completo', email: 'ejemplo@email.com', subject: 'Quiero discutir un proyecto', message: 'Hola Mücahid, me gustaría hablar sobre un proyecto...' } },
             ar: { flag: '🇸🇦', name: 'العربية', placeholders: { name: 'الاسم الكامل', email: 'example@email.com', subject: 'أريد مناقشة مشروع', message: 'مرحبا مجاهد، أريد التحدث عن مشروع...' } }
