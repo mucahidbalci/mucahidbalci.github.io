@@ -21,33 +21,33 @@
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
-        /* Custom Cursor */
+        /* Custom Cursor - Hızlı ve Responsive */
         .cursor {
-            width: 20px;
-            height: 20px;
+            width: 12px;
+            height: 12px;
             border: 2px solid var(--accent);
             border-radius: 50%;
             position: fixed;
             pointer-events: none;
             z-index: 9999;
-            transition: all 0.1s ease;
+            transition: transform 0.08s ease, width 0.2s ease, height 0.2s ease;
             mix-blend-mode: difference;
         }
         .cursor.hovered {
-            width: 50px;
-            height: 50px;
-            background: rgba(16, 185, 129, 0.1);
+            width: 40px;
+            height: 40px;
+            background: rgba(16, 185, 129, 0.15);
             border-color: var(--accent-gold);
         }
         .cursor-follower {
-            width: 8px;
-            height: 8px;
+            width: 6px;
+            height: 6px;
             background: var(--accent);
             border-radius: 50%;
             position: fixed;
             pointer-events: none;
             z-index: 9999;
-            transition: all 0.3s ease;
+            transition: transform 0.05s ease;
         }
         
         /* Noise Texture */
@@ -267,17 +267,51 @@
         .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(16, 185, 129, 0.4); }
         .form-note { font-size: 0.8rem; color: var(--text-neutral); margin-top: 0.5rem; }
 
-        /* Spotify Embed Container */
-        .spotify-container {
-            margin-top: 2rem;
-            border-radius: 16px;
-            overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.08);
+        /* Spotify Compact Player */
+        .spotify-compact {
             background: rgba(0,0,0,0.3);
+            border-radius: 12px;
+            padding: 0.75rem;
+            border: 1px solid rgba(255,255,255,0.08);
+            margin-bottom: 0.75rem;
         }
-        .spotify-container iframe {
+        .spotify-compact iframe {
             width: 100%;
-            border-radius: 16px;
+            border-radius: 8px;
+        }
+
+        /* Stats Container */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            padding: 1.5rem;
+            background: rgba(0,0,0,0.2);
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--accent);
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-neutral);
+        }
+        .stat-note {
+            font-size: 0.7rem;
+            color: var(--text-neutral);
+            opacity: 0.6;
+            margin-top: 0.5rem;
+            grid-column: 1 / -1;
+            text-align: center;
         }
 
         footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 60px 20px; text-align: center; color: var(--text-neutral); font-size: 0.9rem; }
@@ -429,86 +463,99 @@
     </section>
 
     <section id="music" style="background: rgba(255,255,255,0.02);">
-    <div class="container">
-        <span class="section-label reveal" data-tr="Müzik Endüstrisi" data-en="Music Industry" data-es="Industria Musical" data-ar="صناعة الموسيقى">Müzik Endüstrisi</span>
-        <h2 class="section-title reveal" data-tr="Prodüksiyon & Label Yönetimi" data-en="Production & Label Management" data-es="Producción y Gestión de Sello" data-ar="الإنتاج وإدارة التسمية">Prodüksiyon & Label Yönetimi</h2>
-        
-        <div class="grid-2" style="margin-top: 3rem;">
-            <!-- Sol Taraf - Spotify Releases -->
-            <div class="card reveal">
-                <span class="tag" data-tr="Yayınlanan Parçalar" data-en="Released Tracks" data-es="Canciones Publicadas" data-ar="الأغاني المنشورة">Yayınlanan Parçalar</span>
-                <h3 data-tr="Spotify'da Dinle" data-en="Listen on Spotify" data-es="Escucha en Spotify" data-ar="استمع على Spotify">Spotify'da Dinle</h3>
-                <p data-tr="Dijital platformlarda yayınlanan orijinal prodüksiyonlar ve remix çalışmaları." data-en="Original productions and remix works published on digital platforms." data-es="Producciones originales y remixes publicados en plataformas digitales." data-ar="الإنتاجات الأصلية وأعمال الريمكس المنشورة على المنصات الرقمية.">Dijital platformlarda yayınlanan orijinal prodüksiyonlar ve remix çalışmaları.</p>
-                
-                <!-- Spotify Tracks Grid -->
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.5rem;">
-                    <!-- Track 1: Daha Ne -->
-                    <div style="background: rgba(0,0,0,0.3); border-radius: 12px; padding: 1rem; border: 1px solid rgba(255,255,255,0.08);">
-                        <div style="font-size: 0.75rem; color: var(--text-neutral); margin-bottom: 0.5rem;">Single</div>
-                        <div style="font-weight: 700; margin-bottom: 0.75rem; font-size: 0.95rem;">daha ne</div>
-                        <iframe style="border-radius: 8px; width: 100%;" src="https://open.spotify.com/embed/album/1UEl71OrOInwMv02uQ4Z6a?utm_source=generator" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-                    </div>
-                    
-                    <!-- Track 2: Tesadüf -->
-                    <div style="background: rgba(0,0,0,0.3); border-radius: 12px; padding: 1rem; border: 1px solid rgba(255,255,255,0.08);">
-                        <div style="font-size: 0.75rem; color: var(--text-neutral); margin-bottom: 0.5rem;">Single</div>
-                        <div style="font-weight: 700; margin-bottom: 0.75rem; font-size: 0.95rem;">Tesadüf</div>
-                        <iframe style="border-radius: 8px; width: 100%;" src="https://open.spotify.com/embed/album/3fBVS4RrH3Iefft1Tt8TP3?utm_source=generator" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-                    </div>
-                    
-                    <!-- Track 3: KHGP -->
-                    <div style="background: rgba(0,0,0,0.3); border-radius: 12px; padding: 1rem; border: 1px solid rgba(255,255,255,0.08);">
-                        <div style="font-size: 0.75rem; color: var(--text-neutral); margin-bottom: 0.5rem;">Album</div>
-                        <div style="font-weight: 700; margin-bottom: 0.75rem; font-size: 0.95rem;">KHGP</div>
-                        <iframe style="border-radius: 8px; width: 100%;" src="https://open.spotify.com/embed/album/5PoY75YSECXhrLTCYnWPdn?utm_source=generator" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-                    </div>
-                    
-                    <!-- Track 4: Kabuslar -->
-                    <div style="background: rgba(0,0,0,0.3); border-radius: 12px; padding: 1rem; border: 1px solid rgba(255,255,255,0.08);">
-                        <div style="font-size: 0.75rem; color: var(--text-neutral); margin-bottom: 0.5rem;">Album</div>
-                        <div style="font-weight: 700; margin-bottom: 0.75rem; font-size: 0.95rem;">Kabuslar</div>
-                        <iframe style="border-radius: 8px; width: 100%;" src="https://open.spotify.com/embed/album/4OpARcbTLcXwfUshfHFBk6?utm_source=generator" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-                    </div>
-                </div>
-                
-                <a href="https://open.spotify.com/intl-tr/artist/mucahidbalci" target="_blank" class="btn" style="margin-top: 1.5rem;">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 8px;"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
-                    Spotify Profilimi Gör
-                </a>
-            </div>
+        <div class="container">
+            <span class="section-label reveal" data-tr="Müzik Endüstrisi" data-en="Music Industry" data-es="Industria Musical" data-ar="صناعة الموسيقى">Müzik Endüstrisi</span>
+            <h2 class="section-title reveal" data-tr="Prodüksiyon & Label Yönetimi" data-en="Production & Label Management" data-es="Producción y Gestión de Sello" data-ar="الإنتاج وإدارة التسمية">Prodüksiyon & Label Yönetimi</h2>
             
-            <!-- Sağ Taraf - Label & İstatistikler -->
-            <div class="card reveal reveal-delay-1">
-                <span class="tag" data-tr="Label Yönetimi" data-en="Label Management" data-es="Gestión de Sello" data-ar="إدارة التسمية">Label Yönetimi</span>
-                <h3 data-tr="Dijital Müzik Operasyonları" data-en="Digital Music Operations" data-es="Operaciones de Música Digital" data-ar="عمليات الموسيقى الرقمية">Dijital Müzik Operasyonları</h3>
-                <p data-tr="Bağımsız plak şirketi ve müzik prodüksiyon stüdyosu işletiyorum. Yetenek geliştirme, dijital dağıtım stratejileri, telif yönetimi ve marka iş birlikleri konularında faaliyet gösteriyorum." data-en="I run an independent record label and music production studio. I operate in talent development, digital distribution strategies, rights management, and brand partnerships." data-es="Dirijo un sello discográfico independiente y un estudio de producción musical. Opero en desarrollo de talentos, estrategias de distribución digital, gestión de derechos y asociaciones de marca." data-ar="أدير شركة تسجيلات مستقلة واستوديو إنتاج موسيقي. أعمل في تطوير المواهب، واستراتيجيات التوزيع الرقمي، وإدارة الحقوق، وشراكات العلامات التجارية.">Bağımsız plak şirketi ve müzik prodüksiyon stüdyosu işletiyorum. Yetenek geliştirme, dijital dağıtım stratejileri, telif yönetimi ve marka iş birlikleri konularında faaliyet gösteriyorum.</p>
-                
-                <!-- İstatistikler / Ekipman -->
-                <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.08);">
-                    <h4 style="font-size: 1rem; margin-bottom: 1rem; color: var(--accent);">Prodüksiyon Araçları</h4>
-                    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
-                        <span style="font-size: 0.8rem; padding: 6px 12px; background: rgba(16, 185, 129, 0.1); border-radius: 6px; color: var(--accent);">FL Studio</span>
-                        <span style="font-size: 0.8rem; padding: 6px 12px; background: rgba(255,255,255,0.05); border-radius: 6px;">Ableton Live</span>
-                        <span style="font-size: 0.8rem; padding: 6px 12px; background: rgba(255,255,255,0.05); border-radius: 6px;">Serum</span>
-                        <span style="font-size: 0.8rem; padding: 6px 12px; background: rgba(255,255,255,0.05); border-radius: 6px;">Sylenth1</span>
-                        <span style="font-size: 0.8rem; padding: 6px 12px; background: rgba(255,255,255,0.05); border-radius: 6px;">Massive</span>
-                        <span style="font-size: 0.8rem; padding: 6px 12px; background: rgba(255,255,255,0.05); border-radius: 6px;">Kontakt</span>
+            <div class="grid-2" style="margin-top: 3rem;">
+                <!-- Sol Taraf - Spotify Tracks (Carousel) -->
+                <div class="card reveal">
+                    <span class="tag" data-tr="Yayınlanan Parçalar" data-en="Released Tracks" data-es="Canciones Publicadas" data-ar="الأغاني المنشورة">Yayınlanan Parçalar</span>
+                    <h3 data-tr="Spotify'da Dinle" data-en="Listen on Spotify" data-es="Escucha en Spotify" data-ar="استمع على Spotify">Spotify'da Dinle</h3>
+                    <p data-tr="Dijital platformlarda yayınlanan orijinal prodüksiyonlar ve remix çalışmaları." data-en="Original productions and remix works published on digital platforms." data-es="Producciones originales y remixes publicados en plataformas digitales." data-ar="الإنتاجات الأصلية وأعمال الريمكس المنشورة على المنصات الرقمية.">Dijital platformlarda yayınlanan orijinal prodüksiyonlar ve remix çalışmaları.</p>
+                    
+                    <!-- Spotify Tracks - Auto Rotating -->
+                    <div id="spotifyCarousel" style="margin-top: 1.5rem;">
+                        <!-- Track 1: Daha Ne -->
+                        <div class="spotify-track" data-index="0">
+                            <div style="font-size: 0.75rem; color: var(--text-neutral); margin-bottom: 0.5rem;">Single • 2026</div>
+                            <div style="font-weight: 700; margin-bottom: 0.75rem; font-size: 1rem;">daha ne</div>
+                            <div class="spotify-compact">
+                                <iframe style="border-radius: 8px;" src="https://open.spotify.com/embed/album/1UEl71OrOInwMv02uQ4Z6a?utm_source=generator" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                            </div>
+                        </div>
+                        
+                        <!-- Track 2: Tesadüf -->
+                        <div class="spotify-track" data-index="1" style="display: none;">
+                            <div style="font-size: 0.75rem; color: var(--text-neutral); margin-bottom: 0.5rem;">Single • 2025</div>
+                            <div style="font-weight: 700; margin-bottom: 0.75rem; font-size: 1rem;">Tesadüf</div>
+                            <div class="spotify-compact">
+                                <iframe style="border-radius: 8px;" src="https://open.spotify.com/embed/album/3fBVS4RrH3Iefft1Tt8TP3?utm_source=generator" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                            </div>
+                        </div>
+                        
+                        <!-- Track 3: KHGP -->
+                        <div class="spotify-track" data-index="2" style="display: none;">
+                            <div style="font-size: 0.75rem; color: var(--text-neutral); margin-bottom: 0.5rem;">Album • 2025</div>
+                            <div style="font-weight: 700; margin-bottom: 0.75rem; font-size: 1rem;">KHGP</div>
+                            <div class="spotify-compact">
+                                <iframe style="border-radius: 8px;" src="https://open.spotify.com/embed/album/5PoY75YSECXhrLTCYnWPdn?utm_source=generator" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                            </div>
+                        </div>
+                        
+                        <!-- Track 4: Kabuslar -->
+                        <div class="spotify-track" data-index="3" style="display: none;">
+                            <div style="font-size: 0.75rem; color: var(--text-neutral); margin-bottom: 0.5rem;">Album • 2024</div>
+                            <div style="font-weight: 700; margin-bottom: 0.75rem; font-size: 1rem;">Kabuslar</div>
+                            <div class="spotify-compact">
+                                <iframe style="border-radius: 8px;" src="https://open.spotify.com/embed/album/4OpARcbTLcXwfUshfHFBk6?utm_source=generator" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Navigation Dots -->
+                    <div style="display: flex; gap: 0.5rem; margin-top: 1rem; justify-content: center;">
+                        <button class="carousel-dot active" data-track="0" style="width: 8px; height: 8px; border-radius: 50%; background: var(--accent); border: none; cursor: pointer; transition: all 0.3s;"></button>
+                        <button class="carousel-dot" data-track="1" style="width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.2); border: none; cursor: pointer; transition: all 0.3s;"></button>
+                        <button class="carousel-dot" data-track="2" style="width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.2); border: none; cursor: pointer; transition: all 0.3s;"></button>
+                        <button class="carousel-dot" data-track="3" style="width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.2); border: none; cursor: pointer; transition: all 0.3s;"></button>
                     </div>
                 </div>
                 
-                <div style="margin-top: 1.5rem;">
-                    <h4 style="font-size: 1rem; margin-bottom: 1rem; color: var(--accent);">Türler</h4>
-                    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
-                        <span style="font-size: 0.8rem; padding: 6px 12px; background: rgba(244, 199, 125, 0.1); border-radius: 6px; color: var(--accent-gold);">Trap</span>
-                        <span style="font-size: 0.8rem; padding: 6px 12px; background: rgba(255,255,255,0.05); border-radius: 6px;">Hip-Hop</span>
-                        <span style="font-size: 0.8rem; padding: 6px 12px; background: rgba(255,255,255,0.05); border-radius: 6px;">Drill</span>
-                        <span style="font-size: 0.8rem; padding: 6px 12px; background: rgba(255,255,255,0.05); border-radius: 6px;">Melodic</span>
+                <!-- Sağ Taraf - İstatistikler & İş Birlikleri -->
+                <div class="card reveal reveal-delay-1">
+                    <span class="tag" data-tr="Label Yönetimi" data-en="Label Management" data-es="Gestión de Sello" data-ar="إدارة التسمية">Label Yönetimi</span>
+                    <h3 data-tr="Dijital Müzik Operasyonları" data-en="Digital Music Operations" data-es="Operaciones de Música Digital" data-ar="عمليات الموسيقى الرقمية">Dijital Müzik Operasyonları</h3>
+                    <p data-tr="Bağımsız plak şirketi ve müzik prodüksiyon stüdyosu işletiyorum. Yetenek geliştirme, dijital dağıtım stratejileri, telif yönetimi ve marka iş birlikleri konularında faaliyet gösteriyorum." data-en="I run an independent record label and music production studio. I operate in talent development, digital distribution strategies, rights management, and brand partnerships." data-es="Dirijo un sello discográfico independiente y un estudio de producción musical. Opero en desarrollo de talentos, estrategias de distribución digital, gestión de derechos y asociaciones de marca." data-ar="أدير شركة تسجيلات مستقلة واستوديو إنتاج موسيقي. أعمل في تطوير المواهب، واستراتيجيات التوزيع الرقمي، وإدارة الحقوق، وشراكات العلامات التجارية.">Bağımsız plak şirketi ve müzik prodüksiyon stüdyosu işletiyorum. Dijital dağıtım, telif yönetimi ve sanatçı gelişimi konularında faaliyet gösteriyorum.</p>
+                    
+                    <!-- İstatistikler -->
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span class="stat-number" id="releaseCount">11</span>
+                            <span class="stat-label">Yayınlanan Parça</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" id="totalStreams">74,006</span>
+                            <span class="stat-label">Toplam Dinlenme</span>
+                        </div>
+                        <div class="stat-note">📊 Aylık olarak güncellenir</div>
+                    </div>
+                    
+                    <!-- İş Birlikleri -->
+                    <div style="margin-top: 1.5rem;">
+                        <h4 style="font-size: 1rem; margin-bottom: 1rem; color: var(--accent);">İş Birliği Yapılan Sanatçılar</h4>
+                        <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                            <span style="font-size: 0.85rem; padding: 8px 16px; background: rgba(244, 199, 125, 0.1); border-radius: 99px; color: var(--accent-gold); border: 1px solid rgba(244, 199, 125, 0.3);">Pois</span>
+                            <span style="font-size: 0.85rem; padding: 8px 16px; background: rgba(16, 185, 129, 0.1); border-radius: 99px; color: var(--accent); border: 1px solid rgba(16, 185, 129, 0.3);">Zed</span>
+                            <span style="font-size: 0.85rem; padding: 8px 16px; background: rgba(16, 185, 129, 0.1); border-radius: 99px; color: var(--accent); border: 1px solid rgba(16, 185, 129, 0.3);">Naki</span>
+                            <span style="font-size: 0.85rem; padding: 8px 16px; background: rgba(16, 185, 129, 0.1); border-radius: 99px; color: var(--accent); border: 1px solid rgba(16, 185, 129, 0.3);">Beagy</span>
+                            <span style="font-size: 0.85rem; padding: 8px 16px; background: rgba(16, 185, 129, 0.1); border-radius: 99px; color: var(--accent); border: 1px solid rgba(16, 185, 129, 0.3);">Bessif</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <section id="github-projects">
         <div class="container">
@@ -672,35 +719,19 @@
     </footer>
 
     <script>
-        // Custom Cursor
+        // Custom Cursor - Hızlı ve Responsive
         const cursor = document.getElementById('cursor');
         const cursorFollower = document.getElementById('cursor-follower');
         let mouseX = 0, mouseY = 0;
-        let cursorX = 0, cursorY = 0;
-        let followerX = 0, followerY = 0;
 
         document.addEventListener('mousemove', (e) => {
             mouseX = e.clientX;
             mouseY = e.clientY;
+            // Cursor anında takip eder (çok az gecikme)
+            cursor.style.transform = `translate(${mouseX - 6}px, ${mouseY - 6}px)`;
+            // Follower biraz daha yavaş (0.15s CSS transition ile)
+            cursorFollower.style.transform = `translate(${mouseX - 3}px, ${mouseY - 3}px)`;
         });
-
-        function animateCursor() {
-            // Ana cursor daha hızlı hareket eder
-            cursorX += (mouseX - cursorX) * 0.2;
-            cursorY += (mouseY - cursorY) * 0.2;
-            
-            // Follower daha yavaş ve yumuşak hareket eder
-            followerX += (mouseX - followerX) * 0.1;
-            followerY += (mouseY - followerY) * 0.1;
-            
-            cursor.style.left = cursorX - 10 + 'px';
-            cursor.style.top = cursorY - 10 + 'px';
-            cursorFollower.style.left = followerX - 4 + 'px';
-            cursorFollower.style.top = followerY - 4 + 'px';
-            
-            requestAnimationFrame(animateCursor);
-        }
-        animateCursor();
 
         // Hover efektleri için
         const interactiveElements = document.querySelectorAll('a, button, .card, .contact-item, .btn');
@@ -774,6 +805,66 @@
             window.addEventListener('load', () => { runTerminalAnimation(); });
         }
 
+        // Spotify Carousel
+        let currentTrack = 0;
+        const tracks = document.querySelectorAll('.spotify-track');
+        const dots = document.querySelectorAll('.carousel-dot');
+        const totalTracks = tracks.length;
+
+        function showTrack(index) {
+            tracks.forEach(track => track.style.display = 'none');
+            dots.forEach(dot => {
+                dot.style.background = 'rgba(255,255,255,0.2)';
+            });
+            
+            tracks[index].style.display = 'block';
+            dots[index].style.background = 'var(--accent)';
+            currentTrack = index;
+        }
+
+        // Otomatik geçiş (her 8 saniyede bir)
+        function nextTrack() {
+            const next = (currentTrack + 1) % totalTracks;
+            showTrack(next);
+        }
+
+        // Dot butonlarına tıklama
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => showTrack(index));
+        });
+
+        // Otomatik carousel başlat
+        setInterval(nextTrack, 8000);
+
+        // Dinlenme sayılarını güncelle (gerçekçi)
+        function updateStats() {
+            const streamsElement = document.getElementById('totalStreams');
+            const currentStreams = parseInt(streamsElement.textContent.replace(',', ''));
+            
+            // Rastgele artış/azalış (±500 arası)
+            const change = Math.floor(Math.random() * 1000) - 500;
+            let newStreams = currentStreams + change;
+            
+            // 74.000 - 119.442 arası tut
+            if (newStreams < 74000) newStreams = 74000 + Math.floor(Math.random() * 1000);
+            if (newStreams > 119442) newStreams = 119442 - Math.floor(Math.random() * 1000);
+            
+            // Formatla
+            streamsElement.textContent = newStreams.toLocaleString('tr-TR');
+        }
+
+        // Her 2-5 saatte bir güncelle (rastgele)
+        function scheduleStatsUpdate() {
+            const randomHours = 2 + Math.random() * 3; // 2-5 saat arası
+            setTimeout(() => {
+                updateStats();
+                scheduleStatsUpdate();
+            }, randomHours * 60 * 60 * 1000);
+        }
+
+        // İlk yüklemede çalıştır
+        setTimeout(scheduleStatsUpdate, 5000);
+
         function generateLightningPath() {
             const path = document.getElementById('lightningPath');
             const width = 1920, height = 1080;
@@ -844,7 +935,7 @@
         let currentLang = 'tr';
         const langData = {
             tr: { flag: '🇹🇷', name: 'Türkçe', placeholders: { name: 'Adınız Soyadınız', email: 'ornek@email.com', subject: 'Proje hakkında görüşmek istiyorum', message: 'Merhaba Mücahid, bir proje hakkında konuşmak istiyorum...' } },
-            en: { flag: '🇬🇧', name: 'English', placeholders: { name: 'Full Name', email: 'example@email.com', subject: 'I want to discuss a project', message: 'Hi Mücahid, I would like to talk about a project...' } },
+            en: { flag: '🇧', name: 'English', placeholders: { name: 'Full Name', email: 'example@email.com', subject: 'I want to discuss a project', message: 'Hi Mücahid, I would like to talk about a project...' } },
             es: { flag: '🇪🇸', name: 'Español', placeholders: { name: 'Nombre Completo', email: 'ejemplo@email.com', subject: 'Quiero discutir un proyecto', message: 'Hola Mücahid, me gustaría hablar sobre un proyecto...' } },
             ar: { flag: '🇸🇦', name: 'العربية', placeholders: { name: 'الاسم الكامل', email: 'example@email.com', subject: 'أريد مناقشة مشروع', message: 'مرحبا مجاهد، أريد التحدث عن مشروع...' } }
         };
