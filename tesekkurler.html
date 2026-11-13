@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Teşekkürler — Mücahid Balcı</title>
+    <meta name="robots" content="noindex"/>
+    <link href="assets/icons/icon.svg" rel="icon" type="image/svg+xml"/>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/>
+    <style>
+        :root {
+            --bg-dark: #050706;
+            --text-white: #ffffff;
+            --text-neutral: #9ca3af;
+            --accent: #10b981;
+            --accent-gold: #f4c77d;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: var(--bg-dark);
+            color: var(--text-white);
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+            pointer-events: none;
+            opacity: 0.4;
+            z-index: 1;
+        }
+        .glow {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at 50% 40%, #0a1f15 0%, #050706 70%);
+        }
+        .wrap { position: relative; z-index: 2; text-align: center; padding: 24px; max-width: 680px; }
+        .term {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--accent-gold);
+            text-align: left;
+            display: inline-block;
+            margin-bottom: 2rem;
+        }
+        .term .p { color: var(--text-neutral); }
+        .line { opacity: 0; transform: translateY(8px); animation: fadeUp 0.5s ease forwards; }
+        .line:nth-child(1) { animation-delay: 0.1s; }
+        .line:nth-child(2) { animation-delay: 0.45s; }
+        .line:nth-child(3) { animation-delay: 0.8s; }
+        h1 {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-weight: 900;
+            letter-spacing: -0.03em;
+            line-height: 1;
+            margin-bottom: 1.25rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 0.7s ease 1s forwards;
+        }
+        h1 span { color: var(--accent); }
+        .sub {
+            color: var(--text-neutral);
+            font-size: 1.05rem;
+            line-height: 1.7;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 0.7s ease 1.2s forwards;
+        }
+        .count {
+            margin-top: 2rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--text-neutral);
+            opacity: 0;
+            animation: fadeUp 0.7s ease 1.4s forwards;
+        }
+        .count b { color: var(--accent); }
+        .btn {
+            display: inline-flex;
+            margin-top: 1.25rem;
+            padding: 12px 28px;
+            background: var(--accent);
+            color: var(--bg-dark);
+            font-weight: 700;
+            font-size: 0.95rem;
+            border-radius: 99px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: fadeUp 0.7s ease 1.5s forwards;
+        }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(16, 185, 129, 0.35); }
+        .en { margin-top: 1.75rem; font-size: 0.8rem; color: var(--text-neutral); opacity: 0.6; }
+        @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+    <div class="glow"></div>
+    <main class="wrap">
+        <div class="term">
+            <div class="line"><span class="p">mucahid@sec:~$</span> mesaj --durum</div>
+            <div class="line">[ Tamam ] Mesaj güvenli kanaldan iletildi :: 0x2f9c</div>
+            <div class="line">[ Tamam ] Yanıt kuyruğa alındı :: &lt; 24h</div>
+        </div>
+        <h1>Teşekkür<span>ler!</span></h1>
+        <p class="sub">Mesajın bana ulaştı — genelde 24 saat içinde dönüş yaparım.</p>
+        <div class="count">Ana sayfaya yönlendirme: <b id="cd">12</b>s</div>
+        <a class="btn" href="https://mucahidbalci.github.io/">Ana Sayfaya Dön →</a>
+        <p class="en">Message received — I usually reply within 24 hours.</p>
+    </main>
+    <script>
+        let s = 12;
+        const el = document.getElementById('cd');
+        const t = setInterval(() => {
+            s--;
+            el.textContent = s;
+            if (s <= 0) {
+                clearInterval(t);
+                location.href = 'https://mucahidbalci.github.io/';
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
