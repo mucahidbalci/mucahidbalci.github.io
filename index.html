@@ -3,13 +3,18 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1, maximum-scale=5" name="viewport"/>
-    <title>Mücahid Balcı — Girişimci & Siber Güvenlik Araştırmacısı</title>
-    
+    <title>Mücahid Balcı — Frontend Developer & Siber Güvenlik Araştırmacısı</title>
+    <meta name="description" content="Mücahid Balcı — HackerRank-verified Frontend Developer (React), SQL Advanced, Problem Solving certified; cybersecurity researcher & music producer."/>
+    <meta property="og:title" content="Mücahid Balcı — Portfolio"/>
+    <meta property="og:description" content="Verified certifications, open-source security tools, music production."/>
+    <meta property="og:url" content="https://mucahidbalci.github.io/"/>
+    <meta property="og:type" content="website"/>
+
     <link href="assets/icons/icon.svg" rel="icon" type="image/svg+xml"/>
     <link href="https://fonts.googleapis.com" rel="preconnect"/>
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-    
+
     <style>
         :root {
             --bg-dark: #050706;
@@ -18,10 +23,9 @@
             --accent: #10b981;
             --accent-gold: #f4c77d;
         }
-        
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        /* Custom Cursor - Hızlı ve Responsive */
+
         .cursor {
             width: 12px;
             height: 12px;
@@ -49,8 +53,7 @@
             z-index: 9999;
             transition: transform 0.05s ease;
         }
-        
-        /* Noise Texture */
+
         body::before {
             content: "";
             position: fixed;
@@ -60,7 +63,7 @@
             z-index: 9998;
             opacity: 0.4;
         }
-        
+
         body {
             background-color: var(--bg-dark);
             color: var(--text-white);
@@ -69,14 +72,10 @@
             overflow-x: hidden;
             cursor: none;
         }
-        
-        body.cursor-default {
-            cursor: auto;
-        }
+
+        body.cursor-default { cursor: auto; }
         body.cursor-default .cursor,
-        body.cursor-default .cursor-follower {
-            display: none;
-        }
+        body.cursor-default .cursor-follower { display: none; }
 
         .terminal-loader {
             position: fixed;
@@ -88,58 +87,19 @@
             justify-content: center;
             transition: opacity 0.8s ease, visibility 0.8s ease;
         }
-
-        .terminal-loader.hidden {
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-        }
-
-        .terminal-box {
-            width: 90%;
-            max-width: 700px;
-            font-family: 'JetBrains Mono', monospace;
-        }
-
+        .terminal-loader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+        .terminal-box { width: 90%; max-width: 700px; font-family: 'JetBrains Mono', monospace; }
         .terminal-prompt { font-size: 0.9rem; color: var(--text-neutral); margin-bottom: 0.5rem; }
         .terminal-command { font-size: 1rem; color: var(--text-white); margin-bottom: 1rem; }
-        
-        .terminal-line {
-            font-size: 0.9rem;
-            color: var(--accent-gold);
-            margin-bottom: 0.4rem;
-            opacity: 0;
-            transform: translateY(10px);
-        }
+        .terminal-line { font-size: 0.9rem; color: var(--accent-gold); margin-bottom: 0.4rem; opacity: 0; transform: translateY(10px); }
         .terminal-line.show { animation: terminalLineIn 0.4s ease forwards; }
         @keyframes terminalLineIn { to { opacity: 1; transform: translateY(0); } }
-
-        .terminal-cursor {
-            display: inline-block;
-            width: 8px; height: 16px;
-            background: var(--accent-gold);
-            margin-left: 4px;
-            animation: cursorBlink 1s infinite;
-            vertical-align: middle;
-        }
+        .terminal-cursor { display: inline-block; width: 8px; height: 16px; background: var(--accent-gold); margin-left: 4px; animation: cursorBlink 1s infinite; vertical-align: middle; }
         @keyframes cursorBlink { 0%, 50% { opacity: 1; } 51%, 100% { opacity: 0; } }
-
-        .terminal-progress {
-            margin-top: 2rem; height: 2px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 2px; overflow: hidden; opacity: 0;
-        }
+        .terminal-progress { margin-top: 2rem; height: 2px; background: rgba(255,255,255,0.1); border-radius: 2px; overflow: hidden; opacity: 0; }
         .terminal-progress.show { opacity: 1; }
-        .terminal-progress-bar {
-            height: 100%; width: 0%;
-            background: linear-gradient(90deg, var(--accent), var(--accent-gold));
-            transition: width 0.3s ease;
-        }
-        .terminal-progress-text {
-            display: flex; justify-content: space-between;
-            margin-top: 0.75rem; font-size: 0.8rem;
-            color: var(--text-neutral); opacity: 0;
-        }
+        .terminal-progress-bar { height: 100%; width: 0%; background: linear-gradient(90deg, var(--accent), var(--accent-gold)); transition: width 0.3s ease; }
+        .terminal-progress-text { display: flex; justify-content: space-between; margin-top: 0.75rem; font-size: 0.8rem; color: var(--text-neutral); opacity: 0; }
         .terminal-progress-text.show { opacity: 1; }
         .terminal-skip { color: var(--accent-gold); cursor: pointer; transition: opacity 0.3s; }
         .terminal-skip:hover { opacity: 0.7; }
@@ -153,7 +113,6 @@
             animation: fogMove 20s ease-in-out infinite;
         }
         @keyframes fogMove { 0%, 100% { transform: scale(1) translateY(0); } 50% { transform: scale(1.1) translateY(-20px); } }
-
         .lightning-svg { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 3; pointer-events: none; }
         .lightning-path {
             fill: none; stroke: #ffffff; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
@@ -162,23 +121,19 @@
         }
         .lightning-path.active { animation: lightningStrike 0.6s ease-out forwards; }
         @keyframes lightningStrike { 0% { opacity: 0; } 10%, 50% { opacity: 0.3; } 70% { opacity: 0.2; } 100% { opacity: 0; } }
-
         .lightning-flash { position: absolute; inset: 0; background: rgba(255, 255, 255, 0.05); opacity: 0; z-index: 4; pointer-events: none; mix-blend-mode: overlay; }
         .lightning-flash.active { animation: flashEffect 0.6s ease-out; }
         @keyframes flashEffect { 0%, 100% { opacity: 0; } 10%, 30%, 50% { opacity: 0.3; } 20%, 40% { opacity: 0; } }
-
         .hero-content { position: relative; z-index: 10; text-align: center; padding: 0 20px; }
         .hero-title { font-size: clamp(3rem, 10vw, 8rem); font-weight: 900; letter-spacing: -0.04em; line-height: 0.9; display: inline-block; }
         .letter { display: inline-block; opacity: 0; transform: translateY(80px) scale(0.8); filter: blur(10px); text-shadow: 0 0 100px rgba(16, 185, 129, 0.5); }
         .letter.revealed { animation: letterReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
         @keyframes letterReveal { 0% { opacity: 0; transform: translateY(80px) scale(0.8); filter: blur(10px); } 50% { filter: blur(0px); } 100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0px); } }
-
         .hero-subtitle { font-size: clamp(1rem, 2.5vw, 1.5rem); color: var(--accent); font-weight: 600; margin-top: 2rem; opacity: 0; transform: translateY(40px); }
         .hero-subtitle.revealed { animation: slideUpFade 1s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
         .hero-desc { max-width: 600px; margin: 2rem auto 0; color: var(--text-neutral); font-size: 1.1rem; opacity: 0; transform: translateY(40px); }
         .hero-desc.revealed { animation: slideUpFade 1s cubic-bezier(0.16, 1, 0.3, 1) forwards; animation-delay: 0.3s; }
         @keyframes slideUpFade { to { opacity: 1; transform: translateY(0); } }
-
         .scroll-indicator { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); z-index: 10; display: flex; flex-direction: column; align-items: center; gap: 8px; opacity: 0; animation: fadeIn 1s ease forwards; animation-delay: 2s; }
         .scroll-indicator span { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--text-neutral); }
         .scroll-line { width: 1px; height: 60px; background: linear-gradient(to bottom, var(--accent), transparent); animation: scrollLine 2s ease-in-out infinite; }
@@ -218,9 +173,7 @@
         .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
         .logo { font-weight: 800; font-size: 1.2rem; letter-spacing: -0.02em; opacity: 0; transform: translateX(-20px); animation: fadeInLeft 0.8s ease forwards; }
         @keyframes fadeInLeft { to { opacity: 1; transform: translateX(0); } }
-        
         .mobile-menu-btn { display: none; background: none; border: none; color: var(--text-white); cursor: pointer; padding: 8px; }
-        
         .nav-links { display: flex; gap: 2rem; align-items: center; flex-wrap: wrap; }
         .nav-links a { color: var(--text-neutral); text-decoration: none; font-size: 0.9rem; transition: all 0.3s; position: relative; }
         .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: var(--accent); transition: width 0.3s; }
@@ -267,52 +220,14 @@
         .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(16, 185, 129, 0.4); }
         .form-note { font-size: 0.8rem; color: var(--text-neutral); margin-top: 0.5rem; }
 
-        /* Spotify Compact Player */
-        .spotify-compact {
-            background: rgba(0,0,0,0.3);
-            border-radius: 12px;
-            padding: 0.75rem;
-            border: 1px solid rgba(255,255,255,0.08);
-            margin-bottom: 0.75rem;
-        }
-        .spotify-compact iframe {
-            width: 100%;
-            border-radius: 8px;
-        }
+        .spotify-compact { background: rgba(0,0,0,0.3); border-radius: 12px; padding: 0.75rem; border: 1px solid rgba(255,255,255,0.08); margin-bottom: 0.75rem; }
+        .spotify-compact iframe { width: 100%; border-radius: 8px; }
 
-        /* Stats Container */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-            margin-top: 1.5rem;
-            padding: 1.5rem;
-            background: rgba(0,0,0,0.2);
-            border-radius: 12px;
-            border: 1px solid rgba(255,255,255,0.05);
-        }
-        .stat-item {
-            text-align: center;
-        }
-        .stat-number {
-            font-size: 1.75rem;
-            font-weight: 800;
-            color: var(--accent);
-            display: block;
-            margin-bottom: 0.25rem;
-        }
-        .stat-label {
-            font-size: 0.8rem;
-            color: var(--text-neutral);
-        }
-        .stat-note {
-            font-size: 0.7rem;
-            color: var(--text-neutral);
-            opacity: 0.6;
-            margin-top: 0.5rem;
-            grid-column: 1 / -1;
-            text-align: center;
-        }
+        .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.5rem; padding: 1.5rem; background: rgba(0,0,0,0.2); border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); }
+        .stat-item { text-align: center; }
+        .stat-number { font-size: 1.75rem; font-weight: 800; color: var(--accent); display: block; margin-bottom: 0.25rem; }
+        .stat-label { font-size: 0.8rem; color: var(--text-neutral); }
+        .stat-note { font-size: 0.7rem; color: var(--text-neutral); opacity: 0.6; margin-top: 0.5rem; grid-column: 1 / -1; text-align: center; }
 
         footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 60px 20px; text-align: center; color: var(--text-neutral); font-size: 0.9rem; }
 
@@ -324,7 +239,6 @@
             .hero-desc { font-size: 0.95rem; }
             .card { padding: 1.5rem; }
             .section-title { font-size: clamp(1.75rem, 6vw, 2.5rem); }
-            
             .mobile-menu-btn { display: block; }
             .nav-links {
                 display: none;
@@ -345,22 +259,9 @@
             .nav-links.open { display: flex; }
             .lang-dropdown { width: 100%; margin-top: 10px; }
             .lang-btn { width: 100%; justify-content: space-between; }
-            .lang-menu { 
-                position: static; 
-                opacity: 1; 
-                visibility: visible; 
-                transform: none; 
-                display: none; 
-                background: rgba(255,255,255,0.03); 
-                border: 1px solid rgba(255,255,255,0.1); 
-                margin-top: 8px; 
-                min-width: 100%;
-            }
+            .lang-menu { position: static; opacity: 1; visibility: visible; transform: none; display: none; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); margin-top: 8px; min-width: 100%; }
             .lang-menu.open { display: block; }
-            
             .form-group input, .form-group textarea { font-size: 16px; }
-            
-            /* Mobilde custom cursor'ı kapat */
             .cursor, .cursor-follower { display: none; }
             body { cursor: auto; }
         }
@@ -375,7 +276,6 @@
 </head>
 <body>
 
-    <!-- Custom Cursor -->
     <div class="cursor" id="cursor"></div>
     <div class="cursor-follower" id="cursor-follower"></div>
 
@@ -411,10 +311,10 @@
                 <a href="#ventures" data-tr="Girişimler" data-en="Ventures" data-es="Empresas" data-ar="الأعمال">Girişimler</a>
                 <a href="#expertise" data-tr="Yetenekler" data-en="Skills" data-es="Habilidades" data-ar="المهارات">Yetenekler</a>
                 <a href="#contact" data-tr="İletişim" data-en="Contact" data-es="Contacto" data-ar="اتصل">İletişim</a>
-                
+
                 <div class="lang-dropdown">
                     <button class="lang-btn" id="langBtn" onclick="toggleLangMenu()">
-                        <span id="currentFlag">🇷</span>
+                        <span id="currentFlag">🇹🇷</span>
                         <span id="currentLangText">Türkçe</span>
                         <span class="arrow">▾</span>
                     </button>
@@ -438,7 +338,7 @@
         <div class="lightning-flash" id="lightningFlash"></div>
         <div class="hero-content">
             <h1 class="hero-title" id="heroTitle"></h1>
-            <p class="hero-subtitle" data-tr="Girişimci · Siber Güvenlik · Müzik Prodüksiyonu" data-en="Entrepreneur · Cybersecurity · Music Production" data-es="Emprendedor · Ciberseguridad · Producción Musical" data-ar="رائد أعمال · أمن سيبراني · إنتاج موسيقي">Girişimci · Siber Güvenlik · Müzik Prodüksiyonu</p>
+            <p class="hero-subtitle" data-tr="Frontend Developer · Siber Güvenlik · Müzik Prodüksiyonu" data-en="Frontend Developer · Cybersecurity · Music Production" data-es="Frontend Developer · Ciberseguridad · Producción Musical" data-ar="مطور واجهات · أمن سيبراني · إنتاج موسيقي">Frontend Developer · Siber Güvenlik · Müzik Prodüksiyonu</p>
             <p class="hero-desc" data-tr="Teknolojiyi, müziği ve siber güvenliği profesyonel bir vizyonla bir araya getiriyorum." data-en="Bringing together technology, music and cybersecurity with a professional vision." data-es="Uniendo tecnología, música y ciberseguridad con una visión profesional." data-ar="أجمع بين التكنولوجيا والموسيقى والأمن السيبراني برؤية احترافية.">Teknolojiyi, müziği ve siber güvenliği profesyonel bir vizyonla bir araya getiriyorum.</p>
         </div>
         <div class="scroll-indicator">
@@ -466,17 +366,14 @@
         <div class="container">
             <span class="section-label reveal" data-tr="Müzik Endüstrisi" data-en="Music Industry" data-es="Industria Musical" data-ar="صناعة الموسيقى">Müzik Endüstrisi</span>
             <h2 class="section-title reveal" data-tr="Prodüksiyon & Label Yönetimi" data-en="Production & Label Management" data-es="Producción y Gestión de Sello" data-ar="الإنتاج وإدارة التسمية">Prodüksiyon & Label Yönetimi</h2>
-            
+
             <div class="grid-2" style="margin-top: 3rem;">
-                <!-- Sol Taraf - Spotify Tracks (Carousel) -->
                 <div class="card reveal">
                     <span class="tag" data-tr="Yayınlanan Parçalar" data-en="Released Tracks" data-es="Canciones Publicadas" data-ar="الأغاني المنشورة">Yayınlanan Parçalar</span>
                     <h3 data-tr="Spotify'da Dinle" data-en="Listen on Spotify" data-es="Escucha en Spotify" data-ar="استمع على Spotify">Spotify'da Dinle</h3>
                     <p data-tr="Dijital platformlarda yayınlanan orijinal prodüksiyonlar ve remix çalışmaları." data-en="Original productions and remix works published on digital platforms." data-es="Producciones originales y remixes publicados en plataformas digitales." data-ar="الإنتاجات الأصلية وأعمال الريمكس المنشورة على المنصات الرقمية.">Dijital platformlarda yayınlanan orijinal prodüksiyonlar ve remix çalışmaları.</p>
-                    
-                    <!-- Spotify Tracks - Auto Rotating -->
+
                     <div id="spotifyCarousel" style="margin-top: 1.5rem;">
-                        <!-- Track 1: Daha Ne -->
                         <div class="spotify-track" data-index="0">
                             <div style="font-size: 0.75rem; color: var(--text-neutral); margin-bottom: 0.5rem;">Single • 2026</div>
                             <div style="font-weight: 700; margin-bottom: 0.75rem; font-size: 1rem;">daha ne</div>
@@ -484,8 +381,6 @@
                                 <iframe style="border-radius: 8px;" src="https://open.spotify.com/embed/album/1UEl71OrOInwMv02uQ4Z6a?utm_source=generator" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
                             </div>
                         </div>
-                        
-                        <!-- Track 2: Tesadüf -->
                         <div class="spotify-track" data-index="1" style="display: none;">
                             <div style="font-size: 0.75rem; color: var(--text-neutral); margin-bottom: 0.5rem;">Single • 2025</div>
                             <div style="font-weight: 700; margin-bottom: 0.75rem; font-size: 1rem;">Tesadüf</div>
@@ -493,8 +388,6 @@
                                 <iframe style="border-radius: 8px;" src="https://open.spotify.com/embed/album/3fBVS4RrH3Iefft1Tt8TP3?utm_source=generator" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
                             </div>
                         </div>
-                        
-                        <!-- Track 3: KHGP -->
                         <div class="spotify-track" data-index="2" style="display: none;">
                             <div style="font-size: 0.75rem; color: var(--text-neutral); margin-bottom: 0.5rem;">Album • 2025</div>
                             <div style="font-weight: 700; margin-bottom: 0.75rem; font-size: 1rem;">KHGP</div>
@@ -502,8 +395,6 @@
                                 <iframe style="border-radius: 8px;" src="https://open.spotify.com/embed/album/5PoY75YSECXhrLTCYnWPdn?utm_source=generator" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
                             </div>
                         </div>
-                        
-                        <!-- Track 4: Kabuslar -->
                         <div class="spotify-track" data-index="3" style="display: none;">
                             <div style="font-size: 0.75rem; color: var(--text-neutral); margin-bottom: 0.5rem;">Album • 2024</div>
                             <div style="font-weight: 700; margin-bottom: 0.75rem; font-size: 1rem;">Kabuslar</div>
@@ -512,8 +403,7 @@
                             </div>
                         </div>
                     </div>
-                    
-                    <!-- Navigation Dots -->
+
                     <div style="display: flex; gap: 0.5rem; margin-top: 1rem; justify-content: center;">
                         <button class="carousel-dot active" data-track="0" style="width: 8px; height: 8px; border-radius: 50%; background: var(--accent); border: none; cursor: pointer; transition: all 0.3s;"></button>
                         <button class="carousel-dot" data-track="1" style="width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.2); border: none; cursor: pointer; transition: all 0.3s;"></button>
@@ -521,29 +411,26 @@
                         <button class="carousel-dot" data-track="3" style="width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.2); border: none; cursor: pointer; transition: all 0.3s;"></button>
                     </div>
                 </div>
-                
-                <!-- Sağ Taraf - İstatistikler & İş Birlikleri -->
+
                 <div class="card reveal reveal-delay-1">
                     <span class="tag" data-tr="Label Yönetimi" data-en="Label Management" data-es="Gestión de Sello" data-ar="إدارة التسمية">Label Yönetimi</span>
                     <h3 data-tr="Dijital Müzik Operasyonları" data-en="Digital Music Operations" data-es="Operaciones de Música Digital" data-ar="عمليات الموسيقى الرقمية">Dijital Müzik Operasyonları</h3>
                     <p data-tr="Bağımsız plak şirketi ve müzik prodüksiyon stüdyosu işletiyorum. Yetenek geliştirme, dijital dağıtım stratejileri, telif yönetimi ve marka iş birlikleri konularında faaliyet gösteriyorum." data-en="I run an independent record label and music production studio. I operate in talent development, digital distribution strategies, rights management, and brand partnerships." data-es="Dirijo un sello discográfico independiente y un estudio de producción musical. Opero en desarrollo de talentos, estrategias de distribución digital, gestión de derechos y asociaciones de marca." data-ar="أدير شركة تسجيلات مستقلة واستوديو إنتاج موسيقي. أعمل في تطوير المواهب، واستراتيجيات التوزيع الرقمي، وإدارة الحقوق، وشراكات العلامات التجارية.">Bağımsız plak şirketi ve müzik prodüksiyon stüdyosu işletiyorum. Dijital dağıtım, telif yönetimi ve sanatçı gelişimi konularında faaliyet gösteriyorum.</p>
-                    
-                    <!-- İstatistikler -->
+
                     <div class="stats-grid">
                         <div class="stat-item">
                             <span class="stat-number" id="releaseCount">11</span>
-                            <span class="stat-label">Yayınlanan Parça</span>
+                            <span class="stat-label" data-tr="Yayınlanan Parça" data-en="Released Tracks" data-es="Canciones Publicadas" data-ar="الأغاني المنشورة">Yayınlanan Parça</span>
                         </div>
                         <div class="stat-item">
                             <span class="stat-number" id="totalStreams">74,006</span>
-                            <span class="stat-label">Toplam Dinlenme</span>
+                            <span class="stat-label" data-tr="Toplam Dinlenme" data-en="Total Streams" data-es="Reproducciones Totales" data-ar="إجمالي الاستماعات">Toplam Dinlenme</span>
                         </div>
-                        <div class="stat-note">📊 Aylık olarak güncellenir</div>
+                        <div class="stat-note" data-tr="Aylık olarak güncellenir" data-en="Updated monthly" data-es="Actualizado mensualmente" data-ar="يُحدَّث شهريًا">Aylık olarak güncellenir</div>
                     </div>
-                    
-                    <!-- İş Birlikleri -->
+
                     <div style="margin-top: 1.5rem;">
-                        <h4 style="font-size: 1rem; margin-bottom: 1rem; color: var(--accent);">İş Birliği Yapılan Sanatçılar</h4>
+                        <h4 style="font-size: 1rem; margin-bottom: 1rem; color: var(--accent);" data-tr="İş Birliği Yapılan Sanatçılar" data-en="Collaborating Artists" data-es="Artistas Colaboradores" data-ar="الفنانون المتعاونون">İş Birliği Yapılan Sanatçılar</h4>
                         <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
                             <span style="font-size: 0.85rem; padding: 8px 16px; background: rgba(244, 199, 125, 0.1); border-radius: 99px; color: var(--accent-gold); border: 1px solid rgba(244, 199, 125, 0.3);">Pois</span>
                             <span style="font-size: 0.85rem; padding: 8px 16px; background: rgba(16, 185, 129, 0.1); border-radius: 99px; color: var(--accent); border: 1px solid rgba(16, 185, 129, 0.3);">Zed</span>
@@ -639,8 +526,49 @@
     <section id="expertise">
         <div class="container">
             <span class="section-label reveal" data-tr="Yetkinlikler" data-en="Competencies" data-es="Competencias" data-ar="الكفاءات">Yetkinlikler</span>
-            <h2 class="section-title reveal" data-tr="Eğitimler & Sertifikalar" data-en="Training & Certificates" data-es="Formación y Certificados" data-ar="التدريب والشهادات">Eğitimler & Sertifikalar</h2>
-            <div class="grid-3" style="margin-top: 3rem;">
+            <h2 class="section-title reveal" data-tr="Sertifikalar & Eğitimler" data-en="Certificates & Training" data-es="Certificados y Formación" data-ar="الشهادات والتدريب">Sertifikalar & Eğitimler</h2>
+            <p class="reveal" style="font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--text-neutral); margin-bottom: 2.5rem;">✓ 5 <span data-tr="doğrulanmış sertifika" data-en="verified certificates" data-es="certificados verificados" data-ar="شهادات موثقة">doğrulanmış sertifika</span> · <a href="https://www.hackerrank.com/profile/balcimucahid4" target="_blank" style="color: var(--accent); text-decoration: none;">hackerrank.com/profile/balcimucahid4</a></p>
+
+            <div class="grid-3">
+                <div class="card reveal">
+                    <span class="tag" data-tr="Role Sertifikası" data-en="Role Certification" data-es="Certificación de Rol" data-ar="شهادة دور">Role Sertifikası</span>
+                    <h3 style="font-size: 1.2rem;">Frontend Developer (React)</h3>
+                    <p style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--accent);" data-tr="HackerRank · Doğrulanmış" data-en="HackerRank · Verified" data-es="HackerRank · Verificado" data-ar="HackerRank · موثق">HackerRank · Doğrulanmış</p>
+                    <p style="margin-top: 1rem;" data-tr="React ile bileşen mimarisi, form doğrulama ve %100 test kapsamlı uygulama geliştirme." data-en="Component architecture, form validation and fully tested application development with React." data-es="Arquitectura de componentes, validación de formularios y desarrollo totalmente probado con React." data-ar="هندسة المكونات والتحقق من النماذج وتطوير تطبيقات مُختبرة بالكامل باستخدام React.">React ile bileşen mimarisi, form doğrulama ve %100 test kapsamlı uygulama geliştirme.</p>
+                    <a href="https://www.hackerrank.com/certificates/d53eaa13137d" target="_blank" class="btn" data-tr="Sertifikayı Doğrula" data-en="Verify Certificate" data-es="Verificar Certificado" data-ar="تحقق من الشهادة">Sertifikayı Doğrula →</a>
+                </div>
+                <div class="card reveal reveal-delay-1">
+                    <span class="tag" data-tr="İleri Düzey" data-en="Advanced" data-es="Avanzado" data-ar="متقدم">İleri Düzey</span>
+                    <h3 style="font-size: 1.2rem;">SQL (Advanced)</h3>
+                    <p style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--accent);" data-tr="HackerRank · Doğrulanmış" data-en="HackerRank · Verified" data-es="HackerRank · Verificado" data-ar="HackerRank · موثق">HackerRank · Doğrulanmış</p>
+                    <p style="margin-top: 1rem;" data-tr="Window function'lar, CTE'ler ve karmaşık sorgu desenleriyle ileri düzey veri analizi." data-en="Advanced data analysis with window functions, CTEs and complex query patterns." data-es="Análisis de datos avanzado con funciones de ventana, CTE y patrones de consulta complejos." data-ar="تحليل بيانات متقدم باستخدام دوال النوافذ وCTE وأنماط استعلام معقدة.">Window function'lar, CTE'ler ve karmaşık sorgu desenleriyle ileri düzey veri analizi.</p>
+                    <a href="https://www.hackerrank.com/certificates/072e5f724ec0" target="_blank" class="btn" data-tr="Sertifikayı Doğrula" data-en="Verify Certificate" data-es="Verificar Certificado" data-ar="تحقق من الشهادة">Sertifikayı Doğrula →</a>
+                </div>
+                <div class="card reveal reveal-delay-2">
+                    <span class="tag" data-tr="Orta Düzey" data-en="Intermediate" data-es="Intermedio" data-ar="متوسط">Orta Düzey</span>
+                    <h3 style="font-size: 1.2rem;">Problem Solving (Intermediate)</h3>
+                    <p style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--accent);" data-tr="HackerRank · Doğrulanmış" data-en="HackerRank · Verified" data-es="HackerRank · Verificado" data-ar="HackerRank · موثق">HackerRank · Doğrulanmış</p>
+                    <p style="margin-top: 1rem;" data-tr="Algoritmik düşünme, veri yapıları ve optimizasyon problemlerinde doğrulanmış yetkinlik." data-en="Verified competency in algorithmic thinking, data structures and optimization problems." data-es="Competencia verificada en pensamiento algorítmico, estructuras de datos y problemas de optimización." data-ar="كفاءة موثقة في التفكير الخوارزمي وهياكل البيانات ومسائل التحسين.">Algoritmik düşünme, veri yapıları ve optimizasyon problemlerinde doğrulanmış yetkinlik.</p>
+                    <a href="https://www.hackerrank.com/certificates/674a5790cda5" target="_blank" class="btn" data-tr="Sertifikayı Doğrula" data-en="Verify Certificate" data-es="Verificar Certificado" data-ar="تحقق من الشهادة">Sertifikayı Doğrula →</a>
+                </div>
+                <div class="card reveal reveal-delay-1">
+                    <span class="tag" data-tr="Orta Düzey" data-en="Intermediate" data-es="Intermedio" data-ar="متوسط">Orta Düzey</span>
+                    <h3 style="font-size: 1.2rem;">JavaScript (Intermediate)</h3>
+                    <p style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--accent);" data-tr="HackerRank · Doğrulanmış" data-en="HackerRank · Verified" data-es="HackerRank · Verificado" data-ar="HackerRank · موثق">HackerRank · Doğrulanmış</p>
+                    <p style="margin-top: 1rem;" data-tr="ES6+, asenkron akışlar ve DOM/API katmanında doğrulanmış JavaScript yetkinliği." data-en="Verified JavaScript competency across ES6+, async flows and the DOM/API layer." data-es="Competencia verificada en JavaScript: ES6+, flujos asíncronos y capa DOM/API." data-ar="كفاءة موثقة في JavaScript: ES6+ والتدفقات غير المتزامنة وطبقة DOM/API.">ES6+, asenkron akışlar ve DOM/API katmanında doğrulanmış JavaScript yetkinliği.</p>
+                    <a href="https://www.hackerrank.com/certificates/3d381cdaa5f5" target="_blank" class="btn" data-tr="Sertifikayı Doğrula" data-en="Verify Certificate" data-es="Verificar Certificado" data-ar="تحقق من الشهادة">Sertifikayı Doğrula →</a>
+                </div>
+                <div class="card reveal reveal-delay-2">
+                    <span class="tag" data-tr="Orta Düzey" data-en="Intermediate" data-es="Intermedio" data-ar="متوسط">Orta Düzey</span>
+                    <h3 style="font-size: 1.2rem;">SQL (Intermediate)</h3>
+                    <p style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--accent);" data-tr="HackerRank · Doğrulanmış" data-en="HackerRank · Verified" data-es="HackerRank · Verificado" data-ar="HackerRank · موثق">HackerRank · Doğrulanmış</p>
+                    <p style="margin-top: 1rem;" data-tr="Çok tablolu join'ler, gruplama ve alt sorgularla raporlama." data-en="Reporting with multi-table joins, grouping and subqueries." data-es="Informes con joins de varias tablas, agrupación y subconsultas." data-ar="تقارير باستخدام joins متعددة الجداول والتجميع والاستعلامات الفرعية.">Çok tablolu join'ler, gruplama ve alt sorgularla raporlama.</p>
+                    <a href="https://www.hackerrank.com/certificates/3a031f270b05" target="_blank" class="btn" data-tr="Sertifikayı Doğrula" data-en="Verify Certificate" data-es="Verificar Certificado" data-ar="تحقق من الشهادة">Sertifikayı Doğrula →</a>
+                </div>
+            </div>
+
+            <h3 class="reveal" style="margin-top: 4rem; margin-bottom: 0.5rem; font-size: 1.3rem;" data-tr="Eğitimler & Kurslar" data-en="Training & Courses" data-es="Formación y Cursos" data-ar="التدريب والدورات">Eğitimler & Kurslar</h3>
+            <div class="grid-3" style="margin-top: 1.5rem;">
                 <div class="card reveal">
                     <h3 style="font-size: 1.2rem;" data-tr="Python Programlama" data-en="Python Programming" data-es="Programación Python" data-ar="برمجة Python">Python Programlama</h3>
                     <p style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--accent);">TACEV Coding</p>
@@ -670,7 +598,7 @@
                     <h3 data-tr="Bana ulaş" data-en="Reach out" data-es="Contáctame" data-ar="تواصل معي">Bana ulaş</h3>
                     <p data-tr="Bir proje fikriniz mi var veya iş birliği yapmak mı istiyorsunuz? Formu doldurun veya doğrudan e-posta gönderin, en kısa sürede size dönüş yapacağım." data-en="Have a project idea or want to collaborate? Fill out the form or send a direct email, and I will get back to you shortly." data-es="¿Tienes una idea de proyecto o quieres colaborar? Rellena el formulario o envía un correo directo y te responderé pronto." data-ar="لديك فكرة مشروع أو تريد التعاون؟ املأ النموذج أو أرسل بريدًا إلكترونيًا مباشرًا وسأرد عليك قريبًا.">Bir proje fikriniz mi var veya iş birliği yapmak mı istiyorsunuz? Formu doldurun veya doğrudan e-posta gönderin, en kısa sürede size dönüş yapacağım.</p>
                     <div style="margin-top: 2rem;">
-                        <div class="contact-item" onclick="window.open('mailto:balcimucahid4@gmail.com')">
+                        <div class="contact-item" onclick="location.href='mailto:balcimucahid4@gmail.com'">
                             <div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></div>
                             <div class="contact-details"><div class="contact-label" data-tr="E-posta" data-en="Email" data-es="Correo" data-ar="البريد">E-posta</div><div class="contact-link">balcimucahid4@gmail.com</div></div>
                         </div>
@@ -682,20 +610,15 @@
                             <div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></div>
                             <div class="contact-details"><div class="contact-label">Instagram</div><div class="contact-link">@mucahidbalci</div></div>
                         </div>
-                        <div class="contact-item" onclick="window.open('https://guns.lol/mucahh1d', '_blank')">
-                            <div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg></div>
-                            <div class="contact-details"><div class="contact-label" data-tr="Sosyal Profil" data-en="Social Profile" data-es="Perfil Social" data-ar="الملف الاجتماعي">Sosyal Profil</div><div class="contact-link">guns.lol/mucahh1d</div></div>
-                        </div>
                     </div>
                 </div>
                 <div class="contact-form reveal reveal-delay-2">
-                    <!-- FormSubmit alternatifi: https://formspree.io kullanabilirsin -->
                     <form action="https://formsubmit.co/balcimucahid4@gmail.com" method="POST">
                         <input type="hidden" name="_subject" value="Portfolio İletişim Formu: Yeni Mesaj">
                         <input type="hidden" name="_captcha" value="false">
                         <input type="hidden" name="_template" value="table">
                         <input type="text" name="_honey" style="display:none">
-                        
+
                         <div class="form-row">
                             <div class="form-group"><label for="name" data-tr="Adınız" data-en="Your Name" data-es="Tu Nombre" data-ar="اسمك">Adınız</label><input type="text" id="name" name="name" required placeholder="Adınız Soyadınız"/></div>
                             <div class="form-group"><label for="email" data-tr="E-posta" data-en="Email" data-es="Correo" data-ar="البريد">E-posta</label><input type="email" id="email" name="email" required placeholder="ornek@email.com"/></div>
@@ -714,65 +637,57 @@
         <div class="container">
             <p style="font-weight: 700; color: var(--text-white); font-size: 1.1rem; margin-bottom: 0.5rem;">MÜCAHİD BALCI</p>
             <p data-tr="Girişimci · Siber Güvenlik · Müzik Prodüksiyonu" data-en="Entrepreneur · Cybersecurity · Music Production" data-es="Emprendedor · Ciberseguridad · Producción Musical" data-ar="رائد أعمال · أمن سيبراني · إنتاج موسيقي">Girişimci · Siber Güvenlik · Müzik Prodüksiyonu</p>
+            <p style="margin-top: 0.75rem; font-size: 0.8rem;"><a href="https://guns.lol/mucahh1d" target="_blank" style="color: var(--text-neutral); text-decoration: none;">guns.lol/mucahh1d</a></p>
             <p style="margin-top: 1rem; font-size: 0.85rem;">© 2026 <span data-tr="Tüm hakları saklıdır." data-en="All rights reserved." data-es="Todos los derechos reservados." data-ar="جميع الحقوق محفوظة.">Tüm hakları saklıdır.</span></p>
         </div>
     </footer>
 
     <script>
-        // Custom Cursor - Hızlı ve Responsive
         const cursor = document.getElementById('cursor');
         const cursorFollower = document.getElementById('cursor-follower');
-        let mouseX = 0, mouseY = 0;
 
         document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-            // Cursor anında takip eder (çok az gecikme)
-            cursor.style.transform = `translate(${mouseX - 6}px, ${mouseY - 6}px)`;
-            // Follower biraz daha yavaş (0.15s CSS transition ile)
-            cursorFollower.style.transform = `translate(${mouseX - 3}px, ${mouseY - 3}px)`;
+            cursor.style.transform = `translate(${e.clientX - 6}px, ${e.clientY - 6}px)`;
+            cursorFollower.style.transform = `translate(${e.clientX - 3}px, ${e.clientY - 3}px)`;
         });
 
-        // Hover efektleri için
-        const interactiveElements = document.querySelectorAll('a, button, .card, .contact-item, .btn');
-        interactiveElements.forEach(el => {
+        document.querySelectorAll('a, button, .card, .contact-item, .btn').forEach(el => {
             el.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
             el.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
         });
 
-        // Akıllı Terminal - localStorage kontrolü
         const hasVisited = localStorage.getItem('portfolioVisited');
-        
+        let terminalSkipped = false;
+
         function skipTerminal() {
+            terminalSkipped = true;
             localStorage.setItem('portfolioVisited', 'true');
             document.getElementById('terminalLoader').classList.add('hidden');
             document.body.classList.remove('cursor-default');
-            setTimeout(() => {
-                document.body.style.overflow = 'auto';
-            }, 800);
+            setTimeout(() => { document.body.style.overflow = 'auto'; }, 800);
         }
-        
+
         function runTerminalAnimation() {
             const lines = ['termLine1', 'termLine2', 'termLine3', 'termLine4', 'termLine5'];
             const progress = document.getElementById('termProgress');
             const progressText = document.getElementById('termProgressText');
             const progressBar = document.getElementById('termProgressBar');
             const percentEl = document.getElementById('termPercent');
-            
+
             let delay = 0;
-            lines.forEach((id, index) => {
+            lines.forEach((id) => {
                 setTimeout(() => {
                     if (terminalSkipped) return;
                     document.getElementById(id).classList.add('show');
                 }, delay);
                 delay += 600;
             });
-            
+
             setTimeout(() => {
                 if (terminalSkipped) return;
                 progress.classList.add('show');
                 progressText.classList.add('show');
-                
+
                 let percent = 0;
                 const interval = setInterval(() => {
                     if (terminalSkipped) { clearInterval(interval); return; }
@@ -780,32 +695,24 @@
                     if (percent >= 100) {
                         percent = 100;
                         clearInterval(interval);
-                        setTimeout(() => {
-                            skipTerminal();
-                        }, 400);
+                        setTimeout(() => { skipTerminal(); }, 400);
                     }
                     progressBar.style.width = percent + '%';
                     percentEl.textContent = Math.floor(percent);
                 }, 200);
             }, delay);
         }
-        
-        let terminalSkipped = false;
-        
-        // İlk ziyaret mi kontrol et
+
         if (hasVisited) {
-            // Daha önce ziyaret etmiş, terminali atla
             document.getElementById('terminalLoader').classList.add('hidden');
             document.body.style.overflow = 'auto';
             document.body.classList.remove('cursor-default');
         } else {
-            // İlk ziyaret, terminali göster
             document.body.classList.add('cursor-default');
             document.body.style.overflow = 'hidden';
             window.addEventListener('load', () => { runTerminalAnimation(); });
         }
 
-        // Spotify Carousel
         let currentTrack = 0;
         const tracks = document.querySelectorAll('.spotify-track');
         const dots = document.querySelectorAll('.carousel-dot');
@@ -813,57 +720,15 @@
 
         function showTrack(index) {
             tracks.forEach(track => track.style.display = 'none');
-            dots.forEach(dot => {
-                dot.style.background = 'rgba(255,255,255,0.2)';
-            });
-            
+            dots.forEach(dot => { dot.style.background = 'rgba(255,255,255,0.2)'; });
             tracks[index].style.display = 'block';
             dots[index].style.background = 'var(--accent)';
             currentTrack = index;
         }
 
-        // Otomatik geçiş (her 8 saniyede bir)
-        function nextTrack() {
-            const next = (currentTrack + 1) % totalTracks;
-            showTrack(next);
-        }
-
-        // Dot butonlarına tıklama
-        dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => showTrack(index));
-        });
-
-        // Otomatik carousel başlat
+        function nextTrack() { showTrack((currentTrack + 1) % totalTracks); }
+        dots.forEach((dot, index) => { dot.addEventListener('click', () => showTrack(index)); });
         setInterval(nextTrack, 8000);
-
-        // Dinlenme sayılarını güncelle (gerçekçi)
-        function updateStats() {
-            const streamsElement = document.getElementById('totalStreams');
-            const currentStreams = parseInt(streamsElement.textContent.replace(',', ''));
-            
-            // Rastgele artış/azalış (±500 arası)
-            const change = Math.floor(Math.random() * 1000) - 500;
-            let newStreams = currentStreams + change;
-            
-            // 74.000 - 119.442 arası tut
-            if (newStreams < 74000) newStreams = 74000 + Math.floor(Math.random() * 1000);
-            if (newStreams > 119442) newStreams = 119442 - Math.floor(Math.random() * 1000);
-            
-            // Formatla
-            streamsElement.textContent = newStreams.toLocaleString('tr-TR');
-        }
-
-        // Her 2-5 saatte bir güncelle (rastgele)
-        function scheduleStatsUpdate() {
-            const randomHours = 2 + Math.random() * 3; // 2-5 saat arası
-            setTimeout(() => {
-                updateStats();
-                scheduleStatsUpdate();
-            }, randomHours * 60 * 60 * 1000);
-        }
-
-        // İlk yüklemede çalıştır
-        setTimeout(scheduleStatsUpdate, 5000);
 
         function generateLightningPath() {
             const path = document.getElementById('lightningPath');
@@ -935,7 +800,7 @@
         let currentLang = 'tr';
         const langData = {
             tr: { flag: '🇹🇷', name: 'Türkçe', placeholders: { name: 'Adınız Soyadınız', email: 'ornek@email.com', subject: 'Proje hakkında görüşmek istiyorum', message: 'Merhaba Mücahid, bir proje hakkında konuşmak istiyorum...' } },
-            en: { flag: '🇧', name: 'English', placeholders: { name: 'Full Name', email: 'example@email.com', subject: 'I want to discuss a project', message: 'Hi Mücahid, I would like to talk about a project...' } },
+            en: { flag: '🇬🇧', name: 'English', placeholders: { name: 'Full Name', email: 'example@email.com', subject: 'I want to discuss a project', message: 'Hi Mücahid, I would like to talk about a project...' } },
             es: { flag: '🇪🇸', name: 'Español', placeholders: { name: 'Nombre Completo', email: 'ejemplo@email.com', subject: 'Quiero discutir un proyecto', message: 'Hola Mücahid, me gustaría hablar sobre un proyecto...' } },
             ar: { flag: '🇸🇦', name: 'العربية', placeholders: { name: 'الاسم الكامل', email: 'example@email.com', subject: 'أريد مناقشة مشروع', message: 'مرحبا مجاهد، أريد التحدث عن مشروع...' } }
         };
@@ -954,16 +819,9 @@
         }
         document.addEventListener('click', (e) => { const dropdown = document.querySelector('.lang-dropdown'); if (!dropdown.contains(e.target)) { document.getElementById('langMenu').classList.remove('open'); document.getElementById('langBtn').classList.remove('open'); } });
         document.querySelectorAll('a[href^="#"]').forEach(anchor => { anchor.addEventListener('click', function(e) { e.preventDefault(); const target = document.querySelector(this.getAttribute('href')); if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }); });
-        
-        function toggleMobileMenu() {
-            document.getElementById('navLinks').classList.toggle('open');
-        }
-        
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                document.getElementById('navLinks').classList.remove('open');
-            });
-        });
+
+        function toggleMobileMenu() { document.getElementById('navLinks').classList.toggle('open'); }
+        document.querySelectorAll('.nav-links a').forEach(link => { link.addEventListener('click', () => { document.getElementById('navLinks').classList.remove('open'); }); });
     </script>
 </body>
 </html>
